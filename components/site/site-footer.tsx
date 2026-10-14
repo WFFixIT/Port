@@ -34,7 +34,7 @@ export function SiteFooter() {
 
   const go = (id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
-    scrollTo(id, { offset: -8 })
+    scrollTo(id, { offset: id === "#top" ? 0 : -8, focus: true })
   }
 
   return (

@@ -15,26 +15,46 @@ import { cn } from "@/lib/utils"
 export function SiteHeader() {
   const { t } = useLang()
   const { phase } = useIntro()
-  const { scrollTo } = useSmoothScroll()
+  const { scrollTo, focus } = useSmoothScroll()
   const { scrollY } = useScroll()
   const [solid, setSolid] = React.useState(false)
   const [hidden, setHidden] = React.useState(false)
   const [menuOpen, setMenuOpen] = React.useState(false)
   const current = useCurrentSection(ui.nav.map((n) => n.id))
+  const headerRef = React.useRef<HTMLElement>(null)
+  const interacted = React.useRef(false)
+  const focusAfterMenu = React.useRef<string | null>(null)
+
+  // a deep link and the layout settling scroll the page on load, so wait for the visitor's own input
+  React.useEffect(() => {
+    const types = ["wheel", "touchstart", "keydown", "pointerdown"]
+    const arm = () => {
+      interacted.current = true
+      types.forEach((type) => window.removeEventListener(type, arm, true))
+    }
+    types.forEach((type) => window.addEventListener(type, arm, { capture: true, passive: true }))
+    return () => types.forEach((type) => window.removeEventListener(type, arm, true))
+  }, [])
 
   // hide on scroll down, show on scroll up
   useMotionValueEvent(scrollY, "change", (y) => {
     const prev = scrollY.getPrevious() ?? 0
     setSolid(y > 40)
-    if (menuOpen) return
-    if (y > 160 && y > prev + 4) setHidden(true)
-    else if (y < prev - 4 || y <= 160) setHidden(false)
+    if (!interacted.current || menuOpen) return
+    if (y > 160 && y > prev + 4) {
+      // stay put while it has keyboard focus
+      if (!headerRef.current?.querySelector(":focus-visible")) setHidden(true)
+    } else if (y < prev - 4 || y <= 160) setHidden(false)
   })
 
-  const go = (id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const go = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault()
-    setMenuOpen(false)
     scrollTo(id, { offset: id === "#top" ? 0 : -8 })
+    // focus the section too; with the menu open that waits until it has closed
+    if (menuOpen) {
+      focusAfterMenu.current = id
+      setMenuOpen(false)
+    } else focus(id)
   }
 
   const entered = phase !== "loading"
@@ -48,8 +68,11 @@ export function SiteHeader() {
         {t(ui.skip)}
       </a>
       <header
+        ref={headerRef}
+        data-phase={phase}
+        onFocus={() => setHidden(false)}
         className={cn(
-          "site-header fixed inset-x-0 top-0 z-50 transition-[translate,opacity] duration-500 ease-[var(--ease-out-quint)]",
+          "site-header fixed inset-x-0 top-0 z-50 transition-[translate,opacity,filter] duration-500 ease-[var(--ease-out-quint)]",
           !entered && "-translate-y-full opacity-0",
           entered && hidden && "-translate-y-full",
           phase === "intro" && "delay-[1100ms]",
@@ -61,7 +84,7 @@ export function SiteHeader() {
             solid && "border-paper/8 bg-ink/95",
           )}
         >
-          <a href="#top" onClick={go("#top")} className="press type-display text-[1.75rem] leading-none text-paper" aria-label={profile.name}>
+          <a href="#top" onClick={(e) => go(e, "#top")} className="press type-display text-[1.75rem] leading-none text-paper" aria-label={profile.name}>
             {profile.name}
           </a>
 
@@ -71,7 +94,7 @@ export function SiteHeader() {
                 <li key={item.id}>
                   <a
                     href={`#${item.id}`}
-                    onClick={go(`#${item.id}`)}
+                    onClick={(e) => go(e, `#${item.id}`)}
                     aria-current={current === item.id ? "location" : undefined}
                     className="nav-link relative inline-flex h-10 items-center px-3.5 text-[0.95rem] text-paper/80 transition-colors duration-200 hover:text-paper aria-[current]:text-paper"
                   >
@@ -86,12 +109,23 @@ export function SiteHeader() {
             <LangToggle />
             <a
               href="#contact"
-              onClick={go("#contact")}
+              onClick={(e) => go(e, "#contact")}
               className="press inline-flex h-10 items-center rounded-full bg-signal px-5 text-[0.92rem] font-semibold text-on-signal hover:bg-signal-bright max-md:hidden"
             >
               {t(ui.talk)}
             </a>
-            <MobileMenu open={menuOpen} onOpenChange={setMenuOpen} go={go} />
+            <MobileMenu
+              open={menuOpen}
+              onOpenChange={setMenuOpen}
+              go={go}
+              onCloseAutoFocus={(e) => {
+                const id = focusAfterMenu.current
+                if (!id) return
+                focusAfterMenu.current = null
+                e.preventDefault()
+                focus(id)
+              }}
+            />
           </div>
         </div>
       </header>
@@ -143,7 +177,7 @@ export function LangToggle({ className }: { className?: string }) {
             key={o.value}
             type="button"
             aria-pressed={active}
-            aria-label={o.long}
+            aria-label={`${o.label} ${o.long}`}
             onClick={() => setLang(o.value)}
             className={cn(
               "press relative z-10 h-8 rounded-full px-3 text-[0.8rem] font-semibold tracking-wide transition-colors duration-200",
@@ -169,10 +203,12 @@ function MobileMenu({
   open,
   onOpenChange,
   go,
+  onCloseAutoFocus,
 }: {
   open: boolean
   onOpenChange: (open: boolean) => void
-  go: (id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => void
+  go: (e: React.MouseEvent<HTMLAnchorElement>, id: string) => void
+  onCloseAutoFocus: (e: Event) => void
 }) {
   const { t } = useLang()
   const links = [...ui.nav.map((n) => ({ id: n.id, label: n.label })), { id: "contact", label: ui.talk }]
@@ -188,7 +224,12 @@ function MobileMenu({
         </button>
       </DialogPrimitive.Trigger>
       <DialogPrimitive.Portal>
-        <DialogPrimitive.Content className="mobile-menu px-gutter fixed inset-0 z-[70] flex flex-col bg-ink pb-8 text-paper outline-none">
+        {/* the overlay turns on Radix's scroll lock */}
+        <DialogPrimitive.Overlay className="fixed inset-0 z-[69]" />
+        <DialogPrimitive.Content
+          onCloseAutoFocus={onCloseAutoFocus}
+          className="mobile-menu px-gutter fixed inset-0 z-[70] flex flex-col overflow-y-auto overscroll-contain bg-ink pb-8 text-paper outline-none"
+        >
           <DialogPrimitive.Title className="sr-only">{t(ui.menu)}</DialogPrimitive.Title>
           <div className="flex h-[var(--header-h)] items-center justify-between">
             <span className="type-display text-[1.75rem] leading-none">{profile.name}</span>
@@ -208,7 +249,7 @@ function MobileMenu({
                 <li key={l.id} className="mobile-menu__item overflow-hidden" style={{ "--i": i } as React.CSSProperties}>
                   <a
                     href={`#${l.id}`}
-                    onClick={go(`#${l.id}`)}
+                    onClick={(e) => go(e, `#${l.id}`)}
                     className={cn(
                       "type-display block py-1 text-[clamp(3.25rem,16vw,5rem)]",
                       l.id === "contact" ? "text-signal" : "text-paper",

@@ -72,7 +72,7 @@ export function Hero() {
 
   const go = (id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
-    scrollTo(id, { offset: -8 })
+    scrollTo(id, { offset: -8, focus: true })
   }
 
   return (
@@ -138,8 +138,8 @@ export function Hero() {
         <dl className="hero-facts w-[15rem] shrink-0 max-md:hidden">
           {hero.facts.map((f, i) => (
             <div key={i} className={cn("grid grid-cols-[4.25rem_1fr] items-center gap-3 py-3.5", i > 0 && "border-t border-paper/15")}>
-              <dd className="type-display order-1 text-[2.75rem] leading-none text-paper">{f.value}</dd>
               <dt className="order-2 text-[0.85rem] leading-snug text-paper-dim">{t(f.label)}</dt>
+              <dd className="type-display order-1 text-[2.75rem] leading-none text-paper">{f.value}</dd>
             </div>
           ))}
         </dl>

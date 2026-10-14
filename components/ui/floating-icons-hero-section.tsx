@@ -17,6 +17,7 @@ interface IconProps {
 
 export interface FloatingIconsHeroProps {
   title: string
+  titleId?: string
   subtitle: string
   ctaText: string
   ctaHref: string
@@ -152,7 +153,7 @@ const Icon = ({
 }
 
 const FloatingIconsHero = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement> & FloatingIconsHeroProps>(
-  ({ className, title, subtitle, ctaText, ctaHref, onCtaClick, icons, ...props }, ref) => {
+  ({ className, title, titleId, subtitle, ctaText, ctaHref, onCtaClick, icons, ...props }, ref) => {
     const mouseX = React.useRef(0)
     const mouseY = React.useRef(0)
     const sectionRef = React.useRef<HTMLElement>(null)
@@ -192,7 +193,9 @@ const FloatingIconsHero = React.forwardRef<HTMLDivElement, React.HTMLAttributes<
         </div>
 
         <div className="pointer-events-none relative z-10 px-4 text-center">
-          <h2 className="type-display text-[clamp(3rem,1rem+8vw,9rem)] text-paper">{title}</h2>
+          <h2 id={titleId} className="type-display text-[clamp(3rem,1rem+8vw,9rem)] text-paper">
+            {title}
+          </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground text-pretty">{subtitle}</p>
           <ul className="sr-only">
             {icons.map((i) => (i.label ? <li key={i.id}>{i.label}</li> : null))}

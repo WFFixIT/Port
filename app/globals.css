@@ -165,6 +165,10 @@
     outline: 2px solid var(--signal-bright);
     outline-offset: 3px;
   }
+  /* no ring on sections focused by in-page links */
+  :where(section, footer)[tabindex="-1"]:focus-visible {
+    outline: none;
+  }
   img,
   video,
   canvas {
@@ -172,9 +176,8 @@
   }
 }
 
-/* language switch */
-main,
-.site-header {
+/* language switch (the header's transition is in its classes) */
+main {
   transition:
     filter 220ms var(--ease-out-quint),
     opacity 220ms var(--ease-out-quint);
@@ -287,6 +290,10 @@ html:lang(th) .type-display:lang(th),
 /* fallback if the intro never starts */
 .hero[data-phase="loading"] .hero-letter__inner { animation: hero-rise 1s var(--ease-out-expo) 6s both; }
 .hero[data-phase="loading"] .hero-portrait > div { animation: hero-stand 1s var(--ease-out-expo) 6s both; }
+.site-header[data-phase="loading"] { animation: header-failsafe 0.6s ease 6s both; }
+@keyframes header-failsafe {
+  to { translate: 0 0; opacity: 1; }
+}
 .hero[data-phase="loading"] :is(.hero-intro, .hero-actions, .hero-facts) {
   animation: hero-fade 0.6s ease 6s both;
 }
@@ -353,6 +360,12 @@ html:lang(th) .type-display:lang(th),
 }
 
 /* header */
+/* the gutter is reserved already, so a scroll lock shouldn't add room for a scrollbar */
+@supports (scrollbar-gutter: stable) {
+  html body[data-scroll-locked] {
+    margin-right: 0 !important;
+  }
+}
 .nav-link::after {
   content: "";
   position: absolute;

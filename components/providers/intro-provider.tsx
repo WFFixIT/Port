@@ -31,8 +31,9 @@ export function IntroProvider({ children }: { children: React.ReactNode }) {
 
   React.useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    // skip the intro for deep links, reduced motion and the 404 page
-    if (reduce || window.location.hash || !document.querySelector(".hero")) {
+    // no intro for deep links, reduced motion, the 404 page, or a page that is already scrolled or loaded late
+    const late = performance.now() > 5500 || window.scrollY > 0
+    if (reduce || late || window.location.hash || !document.querySelector(".hero")) {
       const raf = requestAnimationFrame(() => setPhase("ready"))
       return () => cancelAnimationFrame(raf)
     }

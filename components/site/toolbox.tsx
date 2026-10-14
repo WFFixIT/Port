@@ -13,13 +13,14 @@ export function Toolbox() {
     <FloatingIconsHero
       id="toolbox"
       aria-labelledby="toolbox-title"
+      titleId="toolbox-title"
       title={t(toolbox.title)}
       subtitle={t(toolbox.subtitle)}
       ctaText={t(toolbox.cta)}
       ctaHref="#contact"
       onCtaClick={(e) => {
         e.preventDefault()
-        scrollTo("#contact", { offset: -8 })
+        scrollTo("#contact", { offset: -8, focus: true })
       }}
       icons={toolboxIcons}
       className="bg-transparent"
