@@ -44,28 +44,41 @@ function subscribe(listener: () => void) {
 export function LangProvider({ children }: { children: React.ReactNode }) {
   // server render is always Thai, a saved choice applies after hydration
   const lang = React.useSyncExternalStore(subscribe, read, () => "th" as Lang)
+  const timers = React.useRef<number[]>([])
 
   React.useEffect(() => {
     document.documentElement.lang = lang
-    document.title = site.title[lang]
+    // streamed metadata can put the default title back after this runs
+    const title = site.title[lang]
+    const apply = () => {
+      if (document.title !== title) document.title = title
+    }
+    apply()
+    const observer = new MutationObserver(apply)
+    observer.observe(document.head, { childList: true, subtree: true, characterData: true })
+    return () => observer.disconnect()
   }, [lang])
 
-  const setLang = React.useCallback(
-    (next: Lang) => {
-      if (next === lang) return
-      const root = document.documentElement
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        write(next)
-        return
-      }
-      root.setAttribute("data-lang-switching", "")
+  React.useEffect(() => () => timers.current.forEach((t) => window.clearTimeout(t)), [])
+
+  // compares against the stored value, not the rendered one, so the last of several quick clicks wins
+  const setLang = React.useCallback((next: Lang) => {
+    const root = document.documentElement
+    timers.current.forEach((t) => window.clearTimeout(t))
+    timers.current = []
+    if (next === read() || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      write(next)
+      root.removeAttribute("data-lang-switching")
+      return
+    }
+    root.setAttribute("data-lang-switching", "")
+    timers.current.push(
       window.setTimeout(() => {
         write(next)
-        window.setTimeout(() => root.removeAttribute("data-lang-switching"), 70)
-      }, 170)
-    },
-    [lang],
-  )
+        timers.current.push(window.setTimeout(() => root.removeAttribute("data-lang-switching"), 70))
+      }, 170),
+    )
+  }, [])
 
   const t = React.useCallback((copy: Localized) => copy[lang], [lang])
 
