@@ -18,7 +18,7 @@ npm run lint
 npm run build
 ```
 
-Set `NEXT_PUBLIC_SITE_URL` when deploying. The share image, sitemap, robots.txt and the JSON-LD on the home page use it.
+The share image, canonical link, sitemap, robots.txt and JSON-LD need the site's public address. On Vercel it comes from the project's production domain; anywhere else, set `NEXT_PUBLIC_SITE_URL`.
 
 ## Layout
 

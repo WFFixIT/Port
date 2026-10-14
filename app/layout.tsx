@@ -7,7 +7,7 @@ import { MotionProvider } from "@/components/providers/motion-provider"
 import { SmoothScroll } from "@/components/providers/smooth-scroll"
 import { Toaster } from "@/components/ui/sonner"
 import { site } from "@/lib/content"
-import { siteUrl } from "@/lib/site-url"
+import { publicUrl } from "@/lib/site-url"
 import "./globals.css"
 
 const archivo = Archivo({
@@ -28,10 +28,9 @@ const title = site.title.th
 const description = site.description.th
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  ...(publicUrl ? { metadataBase: new URL(publicUrl), alternates: { canonical: "/" } } : {}),
   title,
   description,
-  alternates: { canonical: "/" },
   openGraph: {
     title,
     description,
