@@ -27,6 +27,14 @@ export function Work() {
   const { t } = useLang()
   const [hovered, setHovered] = React.useState<number | null>(null)
   const [openIndex, setOpenIndex] = React.useState<number | null>(null)
+  const [openAt, setOpenAt] = React.useState<string | null>(null)
+  const opener = React.useRef<HTMLElement | null>(null)
+  const open = (i: number | null, at: string | null = null) => {
+    // the drawer has no trigger of its own, so remember what opened it
+    if (i !== null && openIndex === null) opener.current = document.activeElement as HTMLElement | null
+    setOpenIndex(i)
+    setOpenAt(at)
+  }
 
   return (
     <section id="work" aria-labelledby="work-title" className="px-gutter relative py-[clamp(5rem,10vw,9rem)]">
@@ -40,12 +48,17 @@ export function Work() {
         <p className="max-w-[30ch] text-paper-dim text-pretty lg:pb-4 lg:text-right">{t(work.intro)}</p>
       </header>
 
-      <ProjectList onHover={setHovered} onOpen={setOpenIndex} />
+      <ProjectList onHover={setHovered} onOpen={open} />
       <CursorPreview index={hovered} />
       <OwnSites />
-      <LineApps onOpen={setOpenIndex} />
-      <PublicWork onOpen={setOpenIndex} />
-      <ProjectDrawer index={openIndex} onIndexChange={setOpenIndex} />
+      <LineApps onOpen={open} />
+      <PublicWork onOpen={open} />
+      <ProjectDrawer
+        index={openIndex}
+        at={openAt}
+        onIndexChange={open}
+        onClosed={() => opener.current?.focus({ preventScroll: true })}
+      />
     </section>
   )
 }
@@ -90,7 +103,7 @@ function OwnSites() {
   )
 }
 
-function LineApps({ onOpen }: { onOpen: (i: number) => void }) {
+function LineApps({ onOpen }: { onOpen: (i: number, at?: string) => void }) {
   const { t } = useLang()
   return (
     <div className="mt-[clamp(6rem,12vw,10rem)]">
@@ -105,7 +118,7 @@ function LineApps({ onOpen }: { onOpen: (i: number) => void }) {
           return (
             <div key={app.id} className="min-w-0">
               <AppShowcase app={app} />
-              {field ? <FieldStrip field={field} onOpen={() => onOpen(index)} /> : null}
+              {field ? <FieldStrip field={field} onOpen={() => onOpen(index, "field")} /> : null}
             </div>
           )
         })}
@@ -157,7 +170,7 @@ function FieldSection({ field }: { field: Field }) {
   const tall = field.shots.filter((s) => s.src.height > s.src.width)
   const wide = field.shots.filter((s) => s.src.height <= s.src.width)
   return (
-    <section className="mt-16 border-t border-paper/10 pt-6">
+    <section data-at="field" className="mt-16 border-t border-paper/10 pt-6">
       <h3 className="text-sm text-paper-dim">{t(field.title)}</h3>
       <p className="mt-2 max-w-[56ch] text-[1.1rem] text-paper/85 text-pretty">{t(field.intro)}</p>
       <ul className="mt-8 grid grid-cols-2 gap-x-4 gap-y-7 lg:grid-cols-4">
@@ -165,7 +178,7 @@ function FieldSection({ field }: { field: Field }) {
           <li key={i}>
             <figure>
               <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-ink">
-                <Image src={s.src} alt={t(s.caption)} fill sizes="(max-width: 1024px) 44vw, 13rem" className={cn("object-cover", s.video && "object-[50%_35%]")} />
+                <Image src={s.src} alt="" fill sizes="(max-width: 1024px) 44vw, 13rem" className={cn("object-cover", s.video && "object-[50%_35%]")} />
                 {s.video ? <LoopVideo src={s.video} poster={s.src.src} className="absolute inset-0 size-full object-[50%_35%]" /> : null}
               </div>
               <figcaption className="mt-2.5 text-sm text-paper-dim text-pretty">{t(s.caption)}</figcaption>
@@ -175,7 +188,7 @@ function FieldSection({ field }: { field: Field }) {
         {wide.map((s, i) => (
           <li key={`w${i}`} className="col-span-2 lg:col-span-4">
             <figure className="lg:grid lg:grid-cols-4 lg:items-end lg:gap-x-4">
-              <Image src={s.src} alt={t(s.caption)} sizes="(max-width: 1024px) 92vw, 40rem" className="h-auto w-full rounded-xl lg:col-span-3" />
+              <Image src={s.src} alt="" sizes="(max-width: 1024px) 92vw, 40rem" className="h-auto w-full rounded-xl lg:col-span-3" />
               <figcaption className="mt-2.5 text-sm text-paper-dim text-pretty lg:mt-0">{t(s.caption)}</figcaption>
             </figure>
           </li>
@@ -289,6 +302,9 @@ function ProjectList({ onHover, onOpen }: { onHover: (i: number | null) => void;
 function CursorPreview({ index }: { index: number | null }) {
   const reduce = usePrefersReducedMotion()
   const [enabled, setEnabled] = React.useState(false)
+  const [armed, setArmed] = React.useState(false)
+  const boxRef = React.useRef<HTMLDivElement>(null)
+  if (index !== null && !armed) setArmed(true)
   const mx = useMotionValue(0)
   const my = useMotionValue(0)
   const x = useSpring(mx, { stiffness: 220, damping: 26, mass: 0.6 })
@@ -301,9 +317,17 @@ function CursorPreview({ index }: { index: number | null }) {
     const update = () => setEnabled(fine.matches)
     update()
     fine.addEventListener("change", update)
+    // the box's margins place it right of and above the cursor; flip it left near the edge and keep it on screen
     const move = (e: PointerEvent) => {
-      mx.set(e.clientX)
-      my.set(e.clientY)
+      const box = boxRef.current
+      if (!box) return
+      const { offsetWidth: w, offsetHeight: h, offsetLeft: gap, offsetTop: rise } = box
+      const pad = 12
+      const flip = e.clientX + gap + w > window.innerWidth - pad
+      const left = Math.min(Math.max(flip ? e.clientX - gap - w : e.clientX + gap, pad), window.innerWidth - pad - w)
+      const top = Math.min(Math.max(e.clientY + rise, pad), window.innerHeight - pad - h)
+      mx.set(left - gap)
+      my.set(top - rise)
     }
     window.addEventListener("pointermove", move, { passive: true })
     return () => {
@@ -322,23 +346,26 @@ function CursorPreview({ index }: { index: number | null }) {
       className="pointer-events-none fixed top-0 left-0 z-[45] max-md:hidden"
     >
       <motion.div
+        ref={boxRef}
         initial={false}
         animate={shown ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.86 }}
         transition={{ duration: shown ? 0.35 : 0.2, ease: [0.23, 1, 0.32, 1] }}
         className="relative -mt-[9.5rem] ml-8 aspect-[16/10] w-[26rem] overflow-hidden rounded-2xl border border-paper/15 bg-ink-high shadow-[0_40px_100px_-30px_rgb(0_0_0/1)]"
       >
-        {projects.map((p, i) => (
-          <div
-            key={p.slug}
-            className={cn(
-              "absolute inset-0 transition-[opacity,scale] duration-500 ease-[var(--ease-out-quint)]",
-              index === i ? "scale-100 opacity-100" : "scale-[1.06] opacity-0",
-            )}
-          >
-            <Image src={p.shot} alt="" fill sizes="26rem" className="object-cover object-top" />
-            {p.video && !reduce ? <SiteVideo src={p.video} active={index === i} /> : null}
-          </div>
-        ))}
+        {armed
+          ? projects.map((p, i) => (
+              <div
+                key={p.slug}
+                className={cn(
+                  "absolute inset-0 transition-[opacity,scale] duration-500 ease-[var(--ease-out-quint)]",
+                  index === i ? "scale-100 opacity-100" : "scale-[1.06] opacity-0",
+                )}
+              >
+                <Image src={p.shot} alt="" fill sizes="26rem" className="object-cover object-top" />
+                {p.video && !reduce ? <SiteVideo src={p.video} active={index === i} /> : null}
+              </div>
+            ))
+          : null}
       </motion.div>
     </motion.div>
   )
@@ -378,9 +405,26 @@ function SiteVideo({ src, active }: { src: string; active: boolean }) {
   )
 }
 
-function ProjectDrawer({ index, onIndexChange }: { index: number | null; onIndexChange: (i: number | null) => void }) {
+const slide = {
+  enter: (dir: number) => ({ opacity: 0, x: dir * 28, filter: "blur(6px)" }),
+  center: { opacity: 1, x: 0, filter: "blur(0px)" },
+  exit: (dir: number) => ({ opacity: 0, x: dir * -28, filter: "blur(6px)" }),
+}
+
+function ProjectDrawer({
+  index,
+  at,
+  onIndexChange,
+  onClosed,
+}: {
+  index: number | null
+  at: string | null
+  onIndexChange: (i: number | null) => void
+  onClosed: () => void
+}) {
   const { t } = useLang()
   const { lock, unlock } = useSmoothScroll()
+  const reduce = usePrefersReducedMotion()
   const open = index !== null
   const [shown, setShown] = React.useState(index ?? 0)
   const [dir, setDir] = React.useState(1)
@@ -399,7 +443,7 @@ function ProjectDrawer({ index, onIndexChange }: { index: number | null; onIndex
     const next = (shown + delta + projects.length) % projects.length
     setDir(delta)
     onIndexChange(next)
-    scrollerRef.current?.scrollTo({ top: 0, behavior: "smooth" })
+    scrollerRef.current?.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" })
   }
 
   const p = projects[shown]
@@ -411,8 +455,22 @@ function ProjectDrawer({ index, onIndexChange }: { index: number | null; onIndex
         <DialogPrimitive.Overlay className="drawer-overlay fixed inset-0 z-[60] bg-black/70" />
         <DialogPrimitive.Content
           aria-describedby="project-summary"
+          // scroll to the requested section once the content has mounted
+          onOpenAutoFocus={() => {
+            const scroller = scrollerRef.current
+            const target = at ? scroller?.querySelector<HTMLElement>(`[data-at="${at}"]`) : null
+            if (scroller && target) scroller.scrollTop += target.getBoundingClientRect().top - scroller.getBoundingClientRect().top - 24
+          }}
+          onCloseAutoFocus={(e) => {
+            e.preventDefault()
+            onClosed()
+          }}
           className="drawer fixed inset-y-0 right-0 z-[61] flex w-[min(62rem,100vw)] flex-col bg-ink-raised text-paper shadow-[-40px_0_120px_-20px_rgb(0_0_0/0.9)] outline-none md:inset-y-2 md:right-2 md:w-[min(62rem,calc(100vw-1rem))] md:overflow-hidden md:rounded-[1.75rem] md:border md:border-paper/10"
           onKeyDown={(e) => {
+            if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
+            // the screenshot rows scroll sideways with the arrow keys
+            const target = e.target as HTMLElement
+            if (target !== e.currentTarget && target.scrollWidth > target.clientWidth) return
             if (e.key === "ArrowRight") step(1)
             if (e.key === "ArrowLeft") step(-1)
           }}
@@ -455,9 +513,10 @@ function ProjectDrawer({ index, onIndexChange }: { index: number | null; onIndex
               <motion.article
                 key={p.slug}
                 custom={dir}
-                initial={{ opacity: 0, x: dir * 28, filter: "blur(6px)" }}
-                animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, x: dir * -28, filter: "blur(6px)" }}
+                variants={slide}
+                initial="enter"
+                animate="center"
+                exit="exit"
                 transition={{ duration: 0.32, ease: [0.23, 1, 0.32, 1] }}
                 className="px-5 pt-8 pb-10 md:px-10 md:pt-10"
               >
@@ -518,9 +577,9 @@ function ProjectBody({ project: p }: { project: Project }) {
             <div className="group/pan relative h-[min(30rem,56svh)] overflow-hidden [--pan-window:min(30rem,56svh)] max-md:h-[22rem] max-md:[--pan-window:22rem]">
               <Image
                 src={p.full}
-                alt={`${p.name}: ${t(work.previewHint)}`}
+                alt={t(work.fullPage).replace("{name}", p.name)}
                 sizes="(max-width: 768px) 92vw, 52rem"
-                className="w-full animate-[pan-down_24s_ease-in-out_infinite_alternate] can-hover:group-hover/pan:[animation-play-state:paused]"
+                className="w-full animate-[pan-down_24s_ease-in-out_infinite_alternate] group-active/pan:[animation-play-state:paused] can-hover:group-hover/pan:[animation-play-state:paused]"
               />
             </div>
           </div>
@@ -602,13 +661,13 @@ function Gallery({ shots, lead }: { shots: Shot[]; lead: boolean }) {
                   {s.frame === "desktop" ? (
                     <div className="overflow-hidden rounded-xl border border-paper/10 bg-ink">
                       <BrowserBar url={s.url} />
-                      <Image src={s.src} alt={t(s.caption)} sizes={full ? "(max-width: 768px) 92vw, 54rem" : "(max-width: 768px) 92vw, 26rem"} className="h-auto w-full" />
+                      <Image src={s.src} alt="" sizes={full ? "(max-width: 768px) 92vw, 54rem" : "(max-width: 768px) 92vw, 26rem"} className="h-auto w-full" />
                     </div>
                   ) : full && s.src.width > s.src.height ? (
-                    <Image src={s.src} alt={t(s.caption)} sizes="(max-width: 768px) 92vw, 54rem" className="h-auto w-full rounded-xl" />
+                    <Image src={s.src} alt="" sizes="(max-width: 768px) 92vw, 54rem" className="h-auto w-full rounded-xl" />
                   ) : (
                     <div className={cn("relative overflow-hidden rounded-xl", full ? "aspect-[16/10]" : "aspect-[4/5]")}>
-                      <Image src={s.src} alt={t(s.caption)} fill sizes={full ? "(max-width: 768px) 92vw, 54rem" : "(max-width: 768px) 92vw, 26rem"} className="object-cover" />
+                      <Image src={s.src} alt="" fill sizes={full ? "(max-width: 768px) 92vw, 54rem" : "(max-width: 768px) 92vw, 26rem"} className="object-cover" />
                     </div>
                   )}
                   <figcaption className="mt-3 text-sm text-paper-dim text-pretty">{t(s.caption)}</figcaption>
@@ -625,7 +684,7 @@ function Gallery({ shots, lead }: { shots: Shot[]; lead: boolean }) {
               <figure className={cn(phones.length === 1 && "grid grid-cols-[minmax(0,11rem)_1fr] items-end gap-x-5 sm:grid-cols-[minmax(0,15rem)_1fr] sm:gap-x-6")}>
                 <div className="rounded-[1.6rem] border border-paper/15 bg-ink-high p-1.5">
                   <div className="relative aspect-[390/844] overflow-hidden rounded-[1.2rem] bg-white">
-                    <Image src={s.src} alt={t(s.caption)} fill sizes="(max-width: 640px) 44vw, 16rem" className="object-cover object-top" />
+                    <Image src={s.src} alt="" fill sizes="(max-width: 640px) 44vw, 16rem" className="object-cover object-top" />
                   </div>
                 </div>
                 <figcaption className={cn("text-sm text-paper-dim text-pretty", phones.length === 1 ? "max-w-[24ch] pb-2" : "mt-3")}>{t(s.caption)}</figcaption>

@@ -176,7 +176,7 @@ export const work = {
   year: { th: "ปี", en: "Year" },
   next: { th: "งานถัดไป", en: "Next project" },
   prev: { th: "งานก่อนหน้า", en: "Previous project" },
-  previewHint: { th: "เลื่อนดูทั้งหน้าได้", en: "Scroll the whole page" },
+  fullPage: { th: "ภาพหน้าเว็บ {name} ทั้งหน้า", en: "Full-page screenshot of {name}" },
   appsTitle: { th: "แอปใน LINE", en: "LINE apps" },
   fieldOpen: { th: "ดูรูปวันงานทั้งหมด", en: "See the whole day" },
   govTitle: { th: "โปรเจกต์ภาครัฐ", en: "Public-sector projects" },
