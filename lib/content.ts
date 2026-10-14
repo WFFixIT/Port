@@ -23,8 +23,6 @@ export const profile = {
   base: { th: "กรุงเทพฯ", en: "Bangkok" },
   timeZone: "Asia/Bangkok",
   year: 2026,
-  clients: "7+",
-  available: true,
 }
 
 export const site = {
@@ -42,10 +40,7 @@ export const contact = {
   line: { id: "ccaker.9", href: "https://line.me/ti/p/~ccaker.9" },
   phone: { label: "095 889 3776", href: "tel:+66958893776" },
   email: "nattaphat.nontha@gmail.com",
-  github: [
-    { handle: "WFFixIT", href: "https://github.com/WFFixIT" },
-    { handle: "Cakekie", href: "https://github.com/Cakekie" },
-  ],
+  github: { handle: "WFFixIT", href: "https://github.com/WFFixIT", repo: "https://github.com/WFFixIT/Port" },
 }
 
 export const brands = {
@@ -199,23 +194,22 @@ export const work = {
 export const github = {
   title: { th: "GitHub", en: "GitHub" },
   intro: {
-    th: "โค้ดของทุกงานอยู่บน GitHub งานส่วนใหญ่เป็นของลูกค้าเลยตั้งเป็น private ถ้าอยากดูโค้ดส่วนไหน ทักมาได้เลย",
-    en: "Every project lives on GitHub. Most of it is client work, so the repositories are private. If you want to see any of the code, just ask.",
+    th: "งานส่วนใหญ่เป็นโค้ดของลูกค้าเลยตั้ง repo เป็น private แต่โค้ดของเว็บนี้เปิดให้ดูได้ ถ้าอยากดูโค้ดงานไหนเพิ่ม ทักมาได้เลย",
+    en: "Most of my work is client code, so those repositories are private. The code for this site is public, and if you'd like to see more, just ask.",
   },
-  commits: { th: "commit ตั้งแต่ ก.ค. 2026", en: "commits since July 2026" },
-  repos: { th: "repository", en: "repositories" },
-  days: { th: "วันที่มี commit", en: "days with commits" },
+  contributions: { th: "contribution บน GitHub ในรอบปี", en: "contributions on GitHub in the last year" },
+  repos: { th: "repo ที่มี commit ของผม", en: "repositories with my commits" },
+  days: { th: "วันที่มี contribution", en: "active days" },
   streak: { th: "วันติดกันที่ยาวที่สุด", en: "longest streak, in days" },
-  activity: { th: "commit รายวัน", en: "Commits per day" },
+  activity: { th: "contribution รายวัน", en: "Contributions per day" },
   updated: { th: "ข้อมูลวันที่", en: "As of" },
   less: { th: "น้อย", en: "Less" },
   more: { th: "มาก", en: "More" },
   languages: { th: "ภาษาที่เขียน", en: "Languages" },
   repoUnit: { th: "repo", en: "repos" },
-  accounts: { th: "บัญชี GitHub", en: "GitHub accounts" },
-  main: { th: "บัญชีหลัก ใช้ทำงานทุกวัน", en: "Main account, used every day" },
-  personal: { th: "บัญชีส่วนตัว", en: "Personal account" },
-  open: { th: "เปิดดู", en: "Open" },
+  links: { th: "เปิดดูบน GitHub", en: "On GitHub" },
+  profile: { th: "โปรไฟล์ GitHub ของผม", en: "My GitHub profile" },
+  source: { th: "โค้ดของเว็บนี้", en: "The code for this site" },
 }
 
 export type Channel = {

@@ -47,13 +47,13 @@ export function Contact() {
       href: `mailto:${contact.email}`,
       copy: contact.email,
     },
-    ...contact.github.map((g) => ({
-      id: `github-${g.handle}`,
+    {
+      id: "github",
       icon: <GithubIcon className="size-5" aria-hidden />,
       label: "GitHub",
-      value: g.handle,
-      href: g.href,
-    })),
+      value: contact.github.handle,
+      href: contact.github.href,
+    },
   ]
 
   return (

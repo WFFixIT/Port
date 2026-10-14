@@ -79,13 +79,11 @@ export function SiteFooter() {
                 LINE
               </a>
             </li>
-            {contact.github.map((g) => (
-              <li key={g.handle}>
-                <a href={g.href} target="_blank" rel="noopener noreferrer" className="text-paper/80 transition-colors hover:text-paper">
-                  GitHub {g.handle}
-                </a>
-              </li>
-            ))}
+            <li>
+              <a href={contact.github.href} target="_blank" rel="noopener noreferrer" className="text-paper/80 transition-colors hover:text-paper">
+                GitHub
+              </a>
+            </li>
           </ul>
         </nav>
 
