@@ -1,5 +1,7 @@
 # Nattaphat Portfolio
 
+Live at **[nattaphat.vercel.app](https://nattaphat.vercel.app)**
+
 My portfolio site, in Thai and English. It covers the projects I've worked on (websites, systems, LINE apps and a hardware prototype), my GitHub activity, the marketing clips I make for our shop, and how to reach me.
 
 ## Stack
