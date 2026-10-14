@@ -13,6 +13,7 @@ import { Story } from "@/components/site/story"
 import { Toolbox } from "@/components/site/toolbox"
 import { Work } from "@/components/site/work"
 import { brands, contact, profile } from "@/lib/content"
+import { publicUrl } from "@/lib/site-url"
 
 const person = {
   "@context": "https://schema.org",
@@ -25,8 +26,9 @@ const person = {
   address: { "@type": "PostalAddress", addressLocality: "Bangkok", addressCountry: "TH" },
   alumniOf: { "@type": "CollegeOrUniversity", name: "Mae Fah Luang University" },
   worksFor: { "@type": "Organization", name: "White Forces", url: brands.whiteForces },
-  knowsAbout: ["Web development", "Next.js", "TypeScript", "SEO", "Social media marketing"],
-  ...(process.env.NEXT_PUBLIC_SITE_URL ? { url: process.env.NEXT_PUBLIC_SITE_URL } : {}),
+  knowsAbout: ["Web development", "Next.js", "TypeScript", "LINE API", "SEO", "Social media marketing"],
+  sameAs: [contact.github.href],
+  ...(publicUrl ? { url: publicUrl } : {}),
 }
 
 export default function Home() {
