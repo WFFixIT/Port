@@ -34,6 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title,
     description,
+    ...(publicUrl ? { url: "/" } : {}),
     type: "website",
     locale: "th_TH",
     alternateLocale: ["en_US"],
