@@ -109,7 +109,7 @@ function Media({
   return (
     <motion.span
       style={reduce ? undefined : { scale, opacity }}
-      className="relative mx-[0.1em] inline-block h-[0.82em] w-[1.7em] overflow-hidden rounded-full align-[-0.06em] ring-1 ring-paper/15"
+      className="statement-pic relative mx-[0.1em] inline-block h-[0.82em] w-[1.7em] overflow-hidden rounded-full align-[-0.06em] ring-1 ring-paper/15"
     >
       {video ? (
         <LoopVideo src={video} poster={src.src} className="absolute inset-0 size-full" />

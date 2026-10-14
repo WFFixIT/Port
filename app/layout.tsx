@@ -61,7 +61,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </SmoothScroll>
         </MotionProvider>
         <noscript>
-          <style>{`.loader{display:none}.hero *{animation:none!important;opacity:1!important}`}</style>
+          <style>{`.loader{display:none}.hero :is(.hero-letter__inner,.hero-portrait>div,.hero-intro,.hero-actions,.hero-facts){animation:none!important}.site-header,.statement-pic{translate:none!important;scale:none!important;transform:none!important;opacity:1!important}`}</style>
         </noscript>
       </body>
     </html>

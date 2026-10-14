@@ -20,7 +20,7 @@ import { cn } from "@/lib/utils"
 import { TiktokIcon } from "@/components/site/brand-icons"
 import { LoopVideo } from "@/components/site/loop-video"
 
-// horizontal scroll on wide screens, stacked on phones and with reduced motion
+// horizontal scroll on wide screens, stacked on phones, with reduced motion and before the script runs
 export function Story() {
   const { t } = useLang()
   const reduce = usePrefersReducedMotion()
@@ -64,29 +64,30 @@ export function Story() {
       ref={sectionRef}
       id="story"
       aria-labelledby="story-title"
+      data-wide={wide || undefined}
       className="relative"
       style={wide ? { height: `calc(${distance}px + 100svh)` } : undefined}
     >
       <div className={cn("flex flex-col", wide && "sticky top-0 h-svh overflow-hidden")}>
-        <header className="px-gutter flex items-end justify-between gap-6 pt-24 pb-[clamp(2rem,5svh,3.5rem)] lg:motion-safe:pt-[calc(var(--header-h)+min(2.5rem,3svh))]">
-          <h2 id="story-title" className="type-display text-[clamp(3.25rem,1.6rem+7vw,8.5rem)] text-paper lg:motion-safe:text-[min(clamp(3.25rem,1.6rem+7vw,8.5rem),15svh)]">
+        <header className="px-gutter flex items-end justify-between gap-6 pt-24 pb-[clamp(2rem,5svh,3.5rem)] in-data-wide:pt-[calc(var(--header-h)+min(2.5rem,3svh))]">
+          <h2 id="story-title" className="type-display text-[clamp(3.25rem,1.6rem+7vw,8.5rem)] text-paper in-data-wide:text-[min(clamp(3.25rem,1.6rem+7vw,8.5rem),15svh)]">
             {t(story.title)}
           </h2>
-          <p className="hidden max-w-[15rem] pb-2 text-right text-sm text-paper-dim lg:motion-safe:block">{t(story.hint)}</p>
+          <p className="hidden max-w-[15rem] pb-2 text-right text-sm text-paper-dim in-data-wide:block">{t(story.hint)}</p>
         </header>
 
         <motion.ol
           ref={trackRef}
           style={wide && !reduce ? { x } : undefined}
-          className="px-gutter flex flex-1 flex-col gap-16 pb-24 lg:motion-safe:w-max lg:motion-safe:flex-row lg:motion-safe:items-stretch lg:motion-safe:gap-0 lg:motion-safe:pb-[clamp(3.5rem,9svh,7rem)]"
+          className="px-gutter flex flex-1 flex-col gap-16 pb-24 in-data-wide:w-max in-data-wide:flex-row in-data-wide:items-stretch in-data-wide:gap-0 in-data-wide:pb-[clamp(3.5rem,9svh,7rem)]"
         >
           {story.chapters.map((c, i) => (
             <li
               key={c.id}
-              className="relative grid shrink-0 gap-x-10 gap-y-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:motion-safe:w-[min(64vw,60rem)] lg:motion-safe:border-l lg:motion-safe:border-paper/10 lg:motion-safe:pr-[4vw] lg:motion-safe:pl-[3.5vw] lg:motion-safe:first:border-l-0 lg:motion-safe:first:pl-0"
+              className="relative grid shrink-0 gap-x-10 gap-y-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] in-data-wide:w-[min(64vw,60rem)] in-data-wide:border-l in-data-wide:border-paper/10 in-data-wide:pr-[4vw] in-data-wide:pl-[3.5vw] in-data-wide:first:border-l-0 in-data-wide:first:pl-0"
             >
               <div className="flex flex-col">
-                <span className="type-display text-[clamp(4.5rem,3rem+5vw,8rem)] text-transparent [-webkit-text-stroke:1.25px_var(--paper-dim)] lg:motion-safe:text-[min(clamp(4.5rem,3rem+5vw,8rem),11svh)]">
+                <span className="type-display text-[clamp(4.5rem,3rem+5vw,8rem)] text-transparent [-webkit-text-stroke:1.25px_var(--paper-dim)] in-data-wide:text-[min(clamp(4.5rem,3rem+5vw,8rem),11svh)]">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="mt-5 text-[clamp(1.75rem,1.3rem+1.4vw,2.6rem)] leading-[1.15] font-bold tracking-[-0.015em] text-paper wdth-87 lang-th:leading-[1.35]">
@@ -98,7 +99,7 @@ export function Story() {
                   {t(c.place)}
                 </p>
               </div>
-              <div className="relative flex min-h-[18rem] items-center justify-center lg:motion-safe:min-h-0">
+              <div className="relative flex min-h-[18rem] items-center justify-center in-data-wide:min-h-0">
                 <ChapterVisual id={c.id} />
               </div>
             </li>
@@ -139,7 +140,7 @@ function ChapterVisual({ id }: { id: string }) {
 
 function Polaroid() {
   return (
-    <figure className="w-[min(19rem,72vw)] rotate-[-4deg] bg-paper p-3 pb-12 shadow-[0_40px_80px_-30px_rgb(0_0_0/0.9)] transition-transform duration-500 ease-[var(--ease-out-quint)] can-hover:hover:rotate-[-1deg] lg:motion-safe:w-[min(19rem,calc((100svh-26rem)*0.82))]">
+    <figure className="w-[min(19rem,72vw)] rotate-[-4deg] bg-paper p-3 pb-12 shadow-[0_40px_80px_-30px_rgb(0_0_0/0.9)] transition-transform duration-500 ease-[var(--ease-out-quint)] can-hover:hover:rotate-[-1deg] in-data-wide:w-[min(19rem,calc((100svh-26rem)*0.82))]">
       <div className="relative aspect-[4/4.4] overflow-hidden bg-ink-high">
         <Image src={selfie} alt="" fill sizes="(max-width: 1024px) 72vw, 19rem" className="object-cover object-[50%_35%]" />
       </div>
@@ -188,7 +189,7 @@ function Phone() {
   const tiktok = channels.find((c) => c.id === "tiktok-fixit")
   return (
     <figure className="flex flex-col items-center">
-      <div className="relative w-[min(14.5rem,58vw)] rotate-[3deg] rounded-[2.4rem] border border-paper/15 bg-ink-high p-2 shadow-[0_50px_90px_-30px_rgb(0_0_0/0.95)] lg:motion-safe:w-[min(14.5rem,calc((100svh-24rem)*0.5625))]">
+      <div className="relative w-[min(14.5rem,58vw)] rotate-[3deg] rounded-[2.4rem] border border-paper/15 bg-ink-high p-2 shadow-[0_50px_90px_-30px_rgb(0_0_0/0.95)] in-data-wide:w-[min(14.5rem,calc((100svh-24rem)*0.5625))]">
         <div className="relative aspect-[9/16] overflow-hidden rounded-[1.9rem] bg-ink">
           <LoopVideo src="/clips/fixit-phone" poster={fixitPhonePoster.src} className="absolute inset-0 size-full" />
         </div>
