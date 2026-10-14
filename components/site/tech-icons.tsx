@@ -35,6 +35,7 @@ import {
   type SimpleIcon,
 } from "simple-icons"
 
+import { visibleOnDark } from "@/lib/color"
 import { cn } from "@/lib/utils"
 
 const BRANDS: Record<string, SimpleIcon> = {
@@ -83,13 +84,6 @@ const GLYPHS: Record<string, LucideIcon> = {
   MQL5: CandlestickChart,
 }
 
-// dark brand colours get lost on the dark page, so those fall back to the text colour
-function readable(hex: string) {
-  const n = parseInt(hex, 16)
-  const lum = (0.2126 * ((n >> 16) & 255) + 0.7152 * ((n >> 8) & 255) + 0.0722 * (n & 255)) / 255
-  return lum < 0.28 ? undefined : `#${hex}`
-}
-
 export function TechIcon({ name, className }: { name: string; className?: string }) {
   const brand = BRANDS[name]
   if (brand) {
@@ -98,7 +92,7 @@ export function TechIcon({ name, className }: { name: string; className?: string
         viewBox="0 0 24 24"
         aria-hidden
         className={cn("shrink-0", className)}
-        style={{ color: readable(brand.hex) }}
+        style={{ color: visibleOnDark(brand.hex) ? `#${brand.hex}` : undefined }}
         fill="currentColor"
       >
         <path d={brand.path} />

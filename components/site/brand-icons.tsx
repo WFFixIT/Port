@@ -19,6 +19,8 @@ import {
   type SimpleIcon,
 } from "simple-icons"
 
+import { visibleOnDark } from "@/lib/color"
+
 type IconComponent = React.FC<React.SVGProps<SVGSVGElement>>
 
 function fromSimpleIcon(icon: SimpleIcon): IconComponent {
@@ -31,12 +33,8 @@ function fromSimpleIcon(icon: SimpleIcon): IconComponent {
   return Component
 }
 
-// near-black logos would disappear on the dark background
-const tint = (icon: SimpleIcon) => {
-  const n = parseInt(icon.hex, 16)
-  const lum = (0.2126 * ((n >> 16) & 255) + 0.7152 * ((n >> 8) & 255) + 0.0722 * (n & 255)) / 255
-  return lum < 0.2 ? "#ffffff" : `#${icon.hex}`
-}
+// dark logos fall back to white
+const tint = (icon: SimpleIcon) => (visibleOnDark(icon.hex) ? `#${icon.hex}` : "#ffffff")
 
 const tools: { icon: SimpleIcon; className: string }[] = [
   { icon: siNextdotjs, className: "top-[8%] left-[9%]" },
