@@ -68,6 +68,7 @@ export function Archive() {
           options: "ตัวเลือก",
           untitled: "ไม่มีชื่อ",
           justNow: "เมื่อสักครู่",
+          count: (n: number) => `${n} รายการ`,
         }
       : {}
 
@@ -81,12 +82,13 @@ export function Archive() {
       </header>
 
       <div
-        key={lang}
         ref={gridRef}
         className="mx-auto grid max-w-[52rem] grid-cols-1 items-end justify-items-center gap-x-10 gap-y-16 md:grid-cols-2"
       >
+        {/* a folder reads its files once, so a new language needs a fresh folder */}
         <div className="flex w-full max-w-[360px] justify-center">
           <GlassFolder
+            key={`sites-${lang}`}
             label={t(archive.folders.live)}
             meta={t(archive.count.sites).replace("{n}", String(sites.length))}
             art={PAPER_ART}
@@ -100,6 +102,7 @@ export function Archive() {
         </div>
         <div className="flex w-full max-w-[360px] justify-center">
           <GlassFolder
+            key={`demos-${lang}`}
             label={t(archive.folders.demos)}
             meta={t(archive.count.demos).replace("{n}", String(demos.length))}
             tone="dark"

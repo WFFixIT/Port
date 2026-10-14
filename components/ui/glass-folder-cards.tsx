@@ -600,13 +600,15 @@ export default function GlassFolder({
   React.useEffect(() => {
     if (!open && !menuOpen) return
     const onKey = (e: KeyboardEvent) => {
-      if (e.key !== "Escape") return
+      // a dialog that closed on this Escape has already handled it
+      if (e.key !== "Escape" || e.defaultPrevented) return
+      const inside = rootRef.current?.contains(document.activeElement)
       if (menuOpen) {
         setMenuOpen(false)
-        keyRef.current?.focus()
+        if (inside) keyRef.current?.focus()
       } else {
         setOpen(false)
-        hitRef.current?.focus()
+        if (inside) hitRef.current?.focus()
       }
     }
     const onDown = (e: PointerEvent) => {
@@ -712,7 +714,7 @@ export default function GlassFolder({
               type="button"
               className="gf-hit"
               aria-expanded={open}
-              aria-label={(open ? S.close : S.open) + " " + label + ", " + S.count(count)}
+              aria-label={(open ? S.close : S.open) + " " + label + ", " + metaLine}
               onClick={() => {
                 setMenuOpen(false)
                 setOpen(!open)

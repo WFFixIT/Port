@@ -6,13 +6,17 @@ import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react"
 
 import { useLang } from "@/components/providers/lang-provider"
 import { LineIcon } from "@/components/site/brand-icons"
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion"
 import { LoopVideo } from "@/components/site/loop-video"
 import type { ShowcaseApp, StoreScreen } from "@/lib/projects"
 import { cn } from "@/lib/utils"
 
 export function AppShowcase({ app, bleed = true, className }: { app: ShowcaseApp; bleed?: boolean; className?: string }) {
   const { t } = useLang()
+  const reduce = usePrefersReducedMotion()
   const rowRef = React.useRef<HTMLUListElement>(null)
+  const prevRef = React.useRef<HTMLButtonElement>(null)
+  const nextRef = React.useRef<HTMLButtonElement>(null)
   const [edge, setEdge] = React.useState<"start" | "middle" | "end">("start")
   const [scrollable, setScrollable] = React.useState(false)
 
@@ -32,11 +36,18 @@ export function AppShowcase({ app, bleed = true, className }: { app: ShowcaseApp
     return () => ro.disconnect()
   }, [measure])
 
+  // a button that hides at the end of the row hands focus to the other one
+  React.useEffect(() => {
+    const active = document.activeElement
+    if (edge === "end" && active === nextRef.current) prevRef.current?.focus()
+    if (edge === "start" && active === prevRef.current) nextRef.current?.focus()
+  }, [edge])
+
   const step = (dir: 1 | -1) => {
     const row = rowRef.current
     const card = row?.querySelector("li")
     if (!row || !card) return
-    row.scrollBy({ left: dir * (card.getBoundingClientRect().width + 16), behavior: "smooth" })
+    row.scrollBy({ left: dir * (card.getBoundingClientRect().width + 16), behavior: reduce ? "auto" : "smooth" })
   }
 
   return (
@@ -65,9 +76,16 @@ export function AppShowcase({ app, bleed = true, className }: { app: ShowcaseApp
 
       <dl className="mt-6 grid grid-cols-2 border-y border-paper/12 sm:grid-cols-4">
         {app.facts.map((f, i) => (
-          <div key={i} className={cn("px-4 py-4 text-center", i > 0 && "sm:border-l sm:border-paper/12", i % 2 === 1 && "border-l border-paper/12")}>
-            <dd className="text-[1.6rem] leading-none font-bold text-paper tabular-nums">{f.value}</dd>
+          <div
+            key={i}
+            className={cn(
+              "flex flex-col-reverse justify-end px-4 py-4 text-center",
+              i > 0 && "sm:border-l sm:border-paper/12",
+              i % 2 === 1 && "border-l border-paper/12",
+            )}
+          >
             <dt className="mt-1.5 text-xs text-paper-dim">{t(f.label)}</dt>
+            <dd className="text-[1.6rem] leading-none font-bold text-paper tabular-nums">{f.value}</dd>
           </div>
         ))}
       </dl>
@@ -87,8 +105,8 @@ export function AppShowcase({ app, bleed = true, className }: { app: ShowcaseApp
         </ul>
         {scrollable ? (
           <div className="pointer-events-none absolute inset-y-0 -right-2 -left-2 hidden items-center justify-between lg:flex">
-            <StepButton dir={-1} hidden={edge === "start"} onClick={() => step(-1)} />
-            <StepButton dir={1} hidden={edge === "end"} onClick={() => step(1)} />
+            <StepButton ref={prevRef} dir={-1} hidden={edge === "start"} onClick={() => step(-1)} />
+            <StepButton ref={nextRef} dir={1} hidden={edge === "end"} onClick={() => step(1)} />
           </div>
         ) : null}
       </div>
@@ -96,11 +114,22 @@ export function AppShowcase({ app, bleed = true, className }: { app: ShowcaseApp
   )
 }
 
-function StepButton({ dir, hidden, onClick }: { dir: 1 | -1; hidden: boolean; onClick: () => void }) {
+function StepButton({
+  ref,
+  dir,
+  hidden,
+  onClick,
+}: {
+  ref: React.Ref<HTMLButtonElement>
+  dir: 1 | -1
+  hidden: boolean
+  onClick: () => void
+}) {
   const { t } = useLang()
   const Icon = dir === 1 ? ArrowRight : ArrowLeft
   return (
     <button
+      ref={ref}
       type="button"
       onClick={onClick}
       tabIndex={hidden ? -1 : 0}
@@ -128,7 +157,6 @@ function Phrases({ text }: { text: string }) {
 
 function ScreenCard({ screen: s }: { screen: StoreScreen }) {
   const { t } = useLang()
-  const alt = `${s.headline}: ${t(s.caption).replace(/\u00a0/g, " ")}`
   return (
     <li
       className="relative flex aspect-[1/2] snap-start flex-col items-center overflow-hidden rounded-[1.75rem] px-5 pt-7"
@@ -141,13 +169,13 @@ function ScreenCard({ screen: s }: { screen: StoreScreen }) {
       <div className="relative mt-4 w-[80%] flex-1">
         {s.video ? (
           <div className="absolute inset-x-0 top-0 aspect-[585/1342] overflow-hidden rounded-[2.1rem] bg-[#16161a] shadow-[0_24px_40px_-20px_rgb(20_10_40/0.55)]">
-            <Image src={s.image} alt={alt} fill sizes="(max-width: 640px) 60vw, 15rem" className="object-cover object-[50%_40%]" />
+            <Image src={s.image} alt="" fill sizes="(max-width: 640px) 60vw, 15rem" className="object-cover object-[50%_40%]" />
             <LoopVideo src={s.video} poster={s.image.src} className="absolute inset-0 size-full object-[50%_40%]" />
           </div>
         ) : (
           <div className="absolute inset-x-0 top-0 aspect-[585/1342] rounded-[2.1rem] bg-[#16161a] p-[5px] shadow-[0_24px_40px_-20px_rgb(20_10_40/0.55)]">
             <div className="relative size-full overflow-hidden rounded-[1.8rem] bg-white">
-              <Image src={s.image} alt={alt} fill sizes="(max-width: 640px) 60vw, 15rem" className="object-cover object-top" />
+              <Image src={s.image} alt="" fill sizes="(max-width: 640px) 60vw, 15rem" className="object-cover object-top" />
               <StatusBar ink={s.bar === "dark" ? "#14161c" : "#ffffff"} />
             </div>
           </div>
