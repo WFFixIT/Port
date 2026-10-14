@@ -197,7 +197,7 @@ export const github = {
     th: "งานส่วนใหญ่เป็นโค้ดของลูกค้าเลยตั้ง repo เป็น private แต่โค้ดของเว็บนี้เปิดให้ดูได้ ถ้าอยากดูโค้ดงานไหนเพิ่ม ทักมาได้เลย",
     en: "Most of my work is client code, so those repositories are private. The code for this site is public, and if you'd like to see more, just ask.",
   },
-  contributions: { th: "contribution บน GitHub ในรอบปี", en: "contributions on GitHub in the last year" },
+  contributions: { th: "contribution ในรอบปีที่ผ่านมา", en: "contributions in the last year" },
   repos: { th: "repo ที่มี commit ของผม", en: "repositories with my commits" },
   days: { th: "วันที่มี contribution", en: "active days" },
   streak: { th: "วันติดกันที่ยาวที่สุด", en: "longest streak, in days" },
@@ -207,7 +207,7 @@ export const github = {
   more: { th: "มาก", en: "More" },
   languages: { th: "ภาษาที่เขียน", en: "Languages" },
   repoUnit: { th: "repo", en: "repos" },
-  links: { th: "เปิดดูบน GitHub", en: "On GitHub" },
+  links: { th: "ลิงก์ GitHub", en: "Links" },
   profile: { th: "โปรไฟล์ GitHub ของผม", en: "My GitHub profile" },
   source: { th: "โค้ดของเว็บนี้", en: "The code for this site" },
 }
