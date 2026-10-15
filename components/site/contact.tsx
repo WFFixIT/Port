@@ -3,7 +3,7 @@
 import * as React from "react"
 import Image from "next/image"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { ArrowUpRight, Check, Copy, Mail, Phone } from "lucide-react"
+import { ArrowUpRight, Check, Copy, Download, FileText, Mail, Phone } from "lucide-react"
 import { toast } from "sonner"
 
 import pointing from "@/assets/me/portrait-point.webp"
@@ -53,6 +53,14 @@ export function Contact() {
       label: "GitHub",
       value: contact.github.handle,
       href: contact.github.href,
+    },
+    {
+      id: "resume",
+      icon: <FileText className="size-5" aria-hidden />,
+      label: t(contactCopy.resumeLabel),
+      value: t(contactCopy.resumeValue),
+      href: contact.resume,
+      download: true,
     },
   ]
 
@@ -125,12 +133,14 @@ function ChannelRow({
   value,
   href,
   copy,
+  download,
 }: {
   icon: React.ReactNode
   label: string
   value: string
   href: string
   copy?: string
+  download?: boolean
 }) {
   const { t } = useLang()
   const [copied, setCopied] = React.useState(false)
@@ -152,6 +162,7 @@ function ChannelRow({
         href={href}
         target={external ? "_blank" : undefined}
         rel={external ? "noopener noreferrer" : undefined}
+        download={download ? href.split("/").pop() : undefined}
         className="flex min-w-0 flex-1 items-center gap-4"
       >
         <span className="grid size-11 shrink-0 place-items-center rounded-full bg-ink text-paper transition-transform duration-500 ease-[var(--ease-out-expo)] can-hover:group-hover:-rotate-12">
@@ -174,6 +185,8 @@ function ChannelRow({
         >
           {copied ? <Check className="size-4" aria-hidden /> : <Copy className="size-4" aria-hidden />}
         </button>
+      ) : download ? (
+        <Download className="mr-2.5 size-5 shrink-0 transition-transform duration-500 ease-[var(--ease-out-expo)] can-hover:group-hover:translate-y-0.5" aria-hidden />
       ) : (
         <ArrowUpRight className="mr-2.5 size-5 shrink-0 transition-transform duration-500 ease-[var(--ease-out-expo)] can-hover:group-hover:-translate-y-0.5 can-hover:group-hover:translate-x-0.5" aria-hidden />
       )}

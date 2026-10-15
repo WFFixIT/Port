@@ -41,6 +41,7 @@ export const contact = {
   phone: { label: "095 889 3776", href: "tel:+66958893776" },
   email: "nattaphat.nontha@gmail.com",
   github: { handle: "WFFixIT", href: "https://github.com/WFFixIT" },
+  resume: "/Nattaphat-Nonthawong-Resume.pdf",
 }
 
 export const brands = {
@@ -415,6 +416,8 @@ export const contactCopy = {
   lineLabel: { th: "LINE (ตอบเร็วที่สุด)", en: "LINE (fastest)" },
   phoneLabel: { th: "โทร", en: "Phone" },
   emailLabel: { th: "อีเมล", en: "Email" },
+  resumeLabel: { th: "Resume (ภาษาอังกฤษ)", en: "Resume" },
+  resumeValue: { th: "ดาวน์โหลด PDF", en: "Download PDF" },
   scan: { th: "สแกนด้วยกล้องมือถือ\nเพื่อแอดไลน์ได้ทันที", en: "Scan with your phone’s camera\nto add me on LINE" },
   qrLabel: { th: "QR code สำหรับแอดไลน์", en: "QR code to add me on LINE" },
   portraitAlt: {
