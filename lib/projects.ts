@@ -137,7 +137,6 @@ export type Project = {
   role: Localized
   points: Localized[]
   stack: string[]
-  team?: Localized
   url?: string
   shot: StaticImageData
   full?: StaticImageData
@@ -352,7 +351,7 @@ export const projects: Project[] = [
       th: "เว็บของผู้นำเข้าวัสดุก่อสร้างและตกแต่ง แคตตาล็อกสองภาษา 10 กลุ่มสินค้า ทุกหน้ามีปุ่มขอใบเสนอราคาที่ส่งตรงเข้าหลังบ้านและอีเมลของบริษัท พนักงานแก้สินค้าเองได้ไม่ต้องพึ่งโปรแกรมเมอร์",
       en: "Site for an importer of building and finishing materials: a bilingual catalogue of 10 product groups, a quote button on every page that goes straight to the admin inbox and the office email, and an admin panel so staff update products themselves.",
     },
-    role: { th: "พัฒนาต่อจากเวอร์ชันแรก: สองภาษา หลังบ้าน ใบเสนอราคา และ SEO", en: "Took over the first version: bilingual site, admin, quotes and SEO" },
+    role: { th: "ทำเว็บสองภาษา หลังบ้าน ระบบขอใบเสนอราคา และ SEO", en: "Built the bilingual site, the admin, quote requests and SEO" },
     points: [
       { th: "ทำทั้งเว็บและเนื้อหาสินค้าให้เป็นไทย/อังกฤษ แยก URL /en สลับภาษาแล้วยังอยู่หน้าเดิม", en: "Thai and English for the whole site and every product, with /en URLs and a switch that keeps you on the same page" },
       { th: "ขอใบเสนอราคาเข้ากล่องข้อความหลังบ้าน แจ้งเตือนเข้าอีเมล กันสแปมด้วย honeypot และจำกัดจำนวนครั้ง", en: "Quote requests land in an admin inbox and the office email, with a honeypot and rate limiting against spam" },
@@ -500,14 +499,11 @@ export const projects: Project[] = [
       th: "ระบบลาอิเล็กทรอนิกส์ให้เจ้าหน้าที่ส่วนกลาง 6 กลุ่มงานและศูนย์ฯ เขตอีก 12 เขต ยื่นลาและอนุมัติตามสายบังคับบัญชาได้ออนไลน์ วันลาถูกหักเมื่ออนุมัติขั้นสุดท้ายและคืนให้เองเมื่อยกเลิก ผู้บริหารดูรายงานได้ทั้งองค์กร",
       en: "An electronic leave system for 6 central workgroups and 12 regional centres: staff request leave and the chain of command approves it online. Days come off the balance at final approval and go back on cancellation, and management gets reports for the whole organisation.",
     },
-    role: {
-      th: "ร่วมทีมพัฒนาช่วงที่สอง (ก.ค.–ต.ค. 2026) ต่อจากเวอร์ชันแรก",
-      en: "Joined the team for the second phase (Jul–Oct 2026), building on the first version",
-    },
+    role: { th: "พัฒนาระบบและส่งมอบให้หน่วยงาน", en: "Built the system and handed it over to the agency" },
     points: [
       {
-        th: "ย้ายหลังบ้านจาก Supabase มาเป็น PostgreSQL พร้อม migration ที่มีเวอร์ชัน และติดตั้งทั้งระบบได้ด้วย Docker คำสั่งเดียว",
-        en: "Moved the backend off Supabase to PostgreSQL with versioned migrations, and set up the whole system to run with one Docker command",
+        th: "หลังบ้านใช้ PostgreSQL พร้อม migration ที่มีเวอร์ชัน และติดตั้งทั้งระบบได้ด้วย Docker คำสั่งเดียว",
+        en: "A PostgreSQL backend with versioned migrations, and the whole system runs with one Docker command",
       },
       {
         th: "เส้นทางอนุมัติของศูนย์เขต ผู้ปฏิบัติหน้าที่แทนต้องกดรับก่อน ยกเลิกได้ทุกขั้นผ่านสายเดิม และโอนสิทธิ์อนุมัติตอนไม่อยู่",
@@ -518,12 +514,11 @@ export const projects: Project[] = [
         en: "Vacation entitlement by years of service, e-mail notifications, and the official PDF leave form",
       },
       {
-        th: "แก้ตามรายการที่หน่วยงานขอจากการประชุมสองรอบ ปรับหน้าตาทั้งระบบ และทำคู่มือผู้ใช้ 31 หน้ากับสไลด์นำเสนอ",
-        en: "Worked through two rounds of the agency's change requests, reworked the interface, and wrote the 31-page user manual and the presentation",
+        th: "แก้ตามรายการที่หน่วยงานขอจากการประชุมสองรอบ รวมถึงหน้าตาของระบบ และทำคู่มือผู้ใช้ 31 หน้ากับสไลด์นำเสนอ",
+        en: "Worked through two rounds of the agency's change requests, including the interface, and wrote the 31-page user manual and the presentation",
       },
     ],
     stack: ["React", "Vite", "Tailwind CSS", "Node.js", "Express", "PostgreSQL", "Docker", "GitHub Actions"],
-    team: { th: "ทีม 4 คน", en: "Team of 4" },
     highlight: {
       line: {
         th: "ระบบลาออนไลน์ของเจ้าหน้าที่ส่วนกลาง 6 กลุ่มงาน และศูนย์เขตอีก 12 เขต ยื่นลาและอนุมัติตามสายบังคับบัญชาได้ในระบบเดียว",
@@ -547,15 +542,15 @@ export const projects: Project[] = [
     slug: "fdc",
     name: "FDC",
     kind: { th: "โมดูลประจำปืนใหญ่ + ศูนย์อำนวยการยิง", en: "Artillery gun module + fire direction centre" },
-    client: { th: "ต้นแบบที่ WF\u00a0LABs ร่วมพัฒนาให้เหล่าทหารปืนใหญ่ กองทัพบก\u2060ไทย", en: "A prototype WF LABs co-developed for the Royal Thai Army Artillery" },
+    client: { th: "ต้นแบบให้เหล่าทหารปืนใหญ่ กองทัพบก\u2060ไทย", en: "A prototype for the Royal Thai Army Artillery" },
     year: "2026",
     summary: {
       th: "อุปกรณ์มือถือสีเหลืองติด GPS เข็มทิศดิจิทัล และวิทยุ LoRa ประจำปืนแต่ละกระบอก บอกพิกัดและทิศของปืนเป็นมิล แล้วส่งเข้าเว็บแอปศูนย์อำนวยการยิงบนโน้ตบุ๊ก ศูนย์เห็นปืนทุกกระบอกบนแผนที่และส่งข้อมูลกลับไปที่จอของปืนได้ ทำงานได้กลางสนามโดยไม่ต้องมีอินเทอร์เน็ต",
       en: "Yellow handheld units with GPS, a digital compass and a LoRa radio, one per gun. Each shows the gun's grid reference and heading in mils and sends them to a fire direction web app on a laptop, which sees every gun on a map and sends data back to each gun's screen. It all works in the field with no internet.",
     },
     role: {
-      th: "ร่วมพัฒนาต้นแบบกับทีม WF LABs และทำเฟส 2: เฟิร์มแวร์ วิทยุ เว็บแอป และศูนย์บัญชาการ",
-      en: "Co-developed the prototype with the WF LABs team and built phase 2: firmware, radio, the web app and the command centre",
+      th: "ทำเฟิร์มแวร์ วิทยุ เว็บแอปศูนย์อำนวยการยิง และระบบส่งข้อมูลขึ้นศูนย์บัญชาการ",
+      en: "Built the firmware, the radio link, the fire direction web app and the uplink to command",
     },
     points: [
       {
@@ -563,8 +558,8 @@ export const projects: Project[] = [
         en: "Gun-unit firmware on an ESP32-S3 (FreeRTOS on both cores): heading from an RM3100 compass, calibration that cancels the gun's metal, and a north reference learned from GPS on the move",
       },
       {
-        th: "ย้ายวิทยุมาใช้คลื่น 923 MHz ที่ใช้ได้ในไทย เข้ารหัสด้วย AES-128-CCM และกันการส่งซ้ำ",
-        en: "Moved the radio to Thailand's 923 MHz band, encrypted with AES-128-CCM and protected against replay",
+        th: "วิทยุใช้คลื่น 923 MHz ที่ใช้ได้ในไทย เข้ารหัสด้วย AES-128-CCM และกันการส่งซ้ำ",
+        en: "Radio on Thailand's 923 MHz band, encrypted with AES-128-CCM and protected against replay",
       },
       {
         th: "เว็บแอปศูนย์อำนวยการยิง: แผนที่ใช้ได้ออฟไลน์ สถานะปืนทุกกระบอกแบบสด ต่อดองเกิล USB แล้วเจอเองใน 1 วินาที แพ็กเป็นไฟล์เดียวเปิดใช้ได้ทันที",
@@ -576,7 +571,6 @@ export const projects: Project[] = [
       },
     ],
     stack: ["ESP32-S3", "C++", "FreeRTOS", "LoRa", "Python", "Flask", "Leaflet", "MQTT", "FastAPI", "PostGIS"],
-    team: { th: "ทีม 2 คน", en: "Team of 2" },
     highlight: {
       line: {
         th: "โมดูลประจำปืนบอกพิกัดและทิศของปืน แล้วส่งทางวิทยุเข้าเว็บแอปศูนย์อำนวยการยิง ใช้กลางสนามได้โดยไม่ต้องมีเน็ต",

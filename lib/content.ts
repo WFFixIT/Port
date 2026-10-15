@@ -172,7 +172,6 @@ export const work = {
   open: { th: "ดูรายละเอียด", en: "View project" },
   did: { th: "สิ่งที่ผมทำ", en: "What I did" },
   stack: { th: "เครื่องมือ", en: "Built with" },
-  team: { th: "ทีม", en: "Team" },
   year: { th: "ปี", en: "Year" },
   next: { th: "งานถัดไป", en: "Next project" },
   prev: { th: "งานก่อนหน้า", en: "Previous project" },

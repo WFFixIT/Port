@@ -620,7 +620,6 @@ function ProjectBody({ project: p }: { project: Project }) {
             ))}
           </ul>
         </Meta>
-        {p.team ? <Meta label={t(work.team)}>{t(p.team)}</Meta> : null}
         <Meta label={t(work.year)}>{p.year}</Meta>
       </dl>
     </>
