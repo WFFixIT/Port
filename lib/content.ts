@@ -119,8 +119,8 @@ export const story = {
       id: "mfu",
       title: { th: "เรียนวิศวะซอฟต์แวร์", en: "Studying software engineering" },
       body: {
-        th: "ก่อนมาเรียนที่แม่ฟ้าหลวง จังหวัดเชียงราย ผมเคยทำพาร์ทไทม์งานบริการลูกค้า เลยชอบคุยกับคน พอได้ทำงานจริงกับลูกค้า ผมจะนัดคุย requirement ให้เคลียร์ตั้งแต่แรก สรุปเป็น PRD ให้เห็นตรงกันก่อนค่อยเริ่มเขียนโค้ด งานจะได้จบในรอบเดียว ไม่ต้องทำไปแก้ไป ผมว่านี่แหละคือจุดเด่นของผม",
-        en: "Before studying at Mae Fah Luang in Chiang Rai, I worked part-time in customer service, so I like talking to people. On real projects I settle the requirements with the client first and write them up as a PRD before any code, so the work gets done in one pass, not build-then-fix. I think that's my biggest strength.",
+        th: "ผมเรียนที่แม่ฟ้าหลวง จังหวัดเชียงราย ช่วงปิดเทอมก็ไปทำพาร์ทไทม์งานบริการลูกค้า เลยชอบคุยกับคน พอได้ทำงานจริงกับลูกค้า ผมจะนัดคุย requirement ให้เคลียร์ตั้งแต่แรก สรุปเป็น PRD ให้เห็นตรงกันก่อนค่อยเริ่มเขียนโค้ด งานจะได้จบในรอบเดียว ไม่ต้องทำไปแก้ไป ผมว่านี่แหละคือจุดเด่นของผม",
+        en: "I studied at Mae Fah Luang in Chiang Rai and worked part-time in customer service during the semester breaks, so I like talking to people. On real projects I settle the requirements with the client first and write them up as a PRD before any code, so the work gets done in one pass, not build-then-fix. I think that's my biggest strength.",
       },
       place: { th: "เชียงราย", en: "Chiang Rai" },
     },
