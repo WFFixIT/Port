@@ -82,8 +82,8 @@ export function Contact() {
         </h2>
       </div>
 
-      <div className="px-gutter relative mx-auto grid max-w-[96rem] items-end gap-10 pb-[clamp(2rem,5vw,4rem)] lg:-mt-[clamp(4rem,7vw,7.5rem)] lg:grid-cols-[1fr_minmax(0,30rem)_1fr]">
-        <div className="order-2 max-w-[30rem] pb-4 lg:order-1">
+      <div className="px-gutter relative mx-auto grid max-w-[96rem] items-start gap-10 pb-[clamp(2rem,5vw,4rem)] md:grid-cols-[minmax(0,1fr)_auto] xl:grid-cols-[1fr_minmax(0,30rem)_1fr] xl:items-end">
+        <div className="order-2 max-w-[30rem] pb-4 xl:order-1">
           <p className="text-[1.15rem] text-pretty text-on-signal/90">{t(contactCopy.body)}</p>
           <div className="mt-7 flex items-center gap-5">
             <span className="hidden shrink-0 rounded-2xl bg-paper p-4 text-ink shadow-[0_24px_48px_-24px_rgb(0_0_0/0.55)] lg:block">
@@ -105,7 +105,7 @@ export function Contact() {
           </div>
         </div>
 
-        <div className="relative order-1 mx-auto -mt-3 aspect-[1436/1600] w-[min(30rem,88vw)] lg:order-2 lg:-mb-[clamp(2rem,5vw,4rem)] lg:mt-0">
+        <div className="relative order-1 mx-auto -mt-3 aspect-[1436/1600] w-[min(30rem,88vw)] md:col-span-2 lg:-mt-[clamp(4rem,7vw,7.5rem)] xl:order-2 xl:col-span-1 xl:-mb-[clamp(2rem,5vw,4rem)] xl:w-full xl:max-w-[30rem]">
           <motion.div style={reduce ? undefined : { y: rise }} className="absolute inset-0">
             <Image
               src={pointing}
@@ -117,7 +117,7 @@ export function Contact() {
           </motion.div>
         </div>
 
-        <ul className="order-3 flex flex-col max-lg:min-w-0">
+        <ul className="order-3 flex flex-col max-md:min-w-0">
           {rows.map((c) => (
             <ChannelRow key={c.id} {...c} />
           ))}
