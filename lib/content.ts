@@ -199,7 +199,7 @@ export const github = {
   contributions: { th: "contribution ในรอบปีที่ผ่านมา", en: "contributions in the last year" },
   repos: { th: "repo ที่มี commit ของผม", en: "repositories with my commits" },
   days: { th: "วันที่มี contribution", en: "active days" },
-  streak: { th: "วันติดกันที่ยาวที่สุด", en: "longest streak, in days" },
+  streak: { th: "วันติดกันที่ยาว\u2060ที่สุด", en: "longest streak, in days" },
   activity: { th: "contribution รายวัน", en: "Contributions per day" },
   updated: { th: "ข้อมูลวันที่", en: "As of" },
   less: { th: "น้อย", en: "Less" },
@@ -374,16 +374,16 @@ export const process = {
     {
       title: { th: "ทดสอบก่อนขึ้นจริง", en: "Test before it ships" },
       body: {
-        th: "เขียนเทสอัตโนมัติไว้คู่กับโค้ด ระบบคลังมี 1,454 เคส เมมโม่มี 2,835 เคส และทดสอบโหลดบอทคอนเสิร์ตที่ 1,000 คนต่อนาทีก่อนวันงาน",
-        en: "Automated tests live next to the code: 1,454 on the inventory system, 2,835 on MeMo, and the concert bot was load-tested at 1,000 sign-ups a minute before the show.",
+        th: "เขียนเทสอัตโนมัติไว้คู่กับโค้ด แก้ตรงไหนก็รู้ทันทีว่าไปพังตรงอื่นไหม ระบบคลังมี 1,454 เคส เมมโม่มี 2,835 เคส ส่วนบอทคอนเสิร์ตก็ลองให้คนเข้าพร้อมกัน 1,000 คนต่อนาทีก่อนวันงาน ว่าระบบไม่ล่ม",
+        en: "I write automated tests alongside the code, so a fix in one place can't quietly break another: 1,454 on the inventory system, 2,835 on MeMo. Before the concert, I pushed 1,000 sign-ups a minute through the bot to make sure it wouldn't fall over.",
       },
       detail: { th: ["เทสอัตโนมัติ", "CI", "ทดสอบโหลด"], en: ["Automated tests", "CI", "Load tests"] },
     },
     {
       title: { th: "ขึ้นระบบแล้วดูแลต่อ", en: "Ship it, then look after it" },
       body: {
-        th: "ขึ้นระบบผ่าน GitHub Actions ตรวจสุขภาพหลังขึ้นทุกครั้ง ถ้าไม่ผ่านถอยกลับเอง สำรองข้อมูลทุกคืน และมีเซิร์ฟเวอร์สำรองสำหรับวันที่พลาดไม่ได้",
-        en: "Releases go out through GitHub Actions with a health check that rolls back a bad one. Backups run nightly, and there's a standby server for the days that can't go wrong.",
+        th: "ทุกครั้งที่ขึ้นระบบ จะเช็กว่าระบบยังทำงานปกติไหม ถ้าไม่ปกติก็ถอยกลับเวอร์ชันเดิมให้เอง สำรองข้อมูลทุกคืน และวันที่พลาดไม่\u2060ได้อย่างวันคอนเสิร์ต ก็มีเซิร์ฟเวอร์สำรองรอไว้",
+        en: "Every release is checked once it's live, and if something's wrong it rolls back to the last good version by itself. Data is backed up every night, and on days that can't go wrong, like show day, a standby server is ready to take over.",
       },
       detail: { th: ["CI/CD", "สำรองข้อมูล", "เซิร์ฟเวอร์สำรอง"], en: ["CI/CD", "Backups", "Failover"] },
     },

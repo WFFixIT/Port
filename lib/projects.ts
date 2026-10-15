@@ -162,9 +162,9 @@ export const memo: ShowcaseApp = {
   href: "https://line.me/R/ti/p/@398yatur",
   cta: { th: "เพิ่มเพื่อน", en: "Add on LINE" },
   facts: [
-    { value: "2,835", label: { th: "เทสอัตโนมัติ", en: "automated tests" } },
     { value: "94%", label: { th: "เข้าใจประโยคไทยถูก", en: "Thai sentences understood" } },
-    { value: "39", label: { th: "ครั้งที่ขึ้นระบบใน 10 วัน", en: "releases in 10 days" } },
+    { value: "0", label: { th: "แอปที่ต้องโหลดเพิ่ม", en: "apps to install" } },
+    { value: "Drive", label: { th: "ไฟล์อยู่ในไดรฟ์ของคุณเอง", en: "files stay in your own Drive" } },
     { value: "TH/EN", label: { th: "สองภาษา", en: "two languages" } },
   ],
   screens: [
@@ -305,24 +305,24 @@ export const projects: Project[] = [
     role: { th: "ออกแบบ พัฒนา และดูแลทั้งสองระบบ", en: "Designed, built and run both systems" },
     points: [
       {
-        th: "ช่างหยิบของใส่ตะกร้าบนมือถือ ได้ใบเบิกพร้อม QR คลังสแกนครั้งเดียวแล้วตัดสต็อก คืนของก็ทำแบบเดียวกัน",
-        en: "Staff pick items into a cart on their phone and get a slip with one QR; the warehouse scans it once and only then is stock cut. Returns work the same way",
+        th: "ช่างเลือกของใส่ตะกร้าในมือถือ ได้ใบเบิกที่มี QR พอคลังสแกนก็ตัดสต็อกทันที ตอนคืนของก็ทำแบบเดียวกัน",
+        en: "Crews pick items into a cart on their phone and get a slip with a QR code. The warehouse scans it once, and only then does stock come off. Returns work the same way",
       },
       {
-        th: "หลายคลังแยกยอด ป้าย QR ประจำชั้นวาง เครื่องมือติดตามรายชิ้นพร้อมขั้นอนุมัติ และเที่ยวส่งของที่ถ่ายรูปตอนส่งและตอนรับ",
-        en: "Several warehouses with their own balances, shelf QR codes, tools tracked one by one with an approval step, and delivery trips photographed at dispatch and receipt",
+        th: "มีหลายคลังที่แยกยอดกัน ติดป้าย QR ที่ชั้นวาง เครื่องมือแต่ละชิ้นรู้ว่าอยู่กับใคร (จะยืมต้องมีคนอนุมัติ) และทุกเที่ยวส่งของถ่ายรูปไว้ทั้งตอนส่งและตอนรับ",
+        en: "Several warehouses with their own stock, QR labels on the shelves, every tool tracked one by one (borrowing one needs approval), and each delivery photographed when it leaves and when it arrives",
       },
       {
-        th: "รายงาน นำเข้าและส่งออก Excel แจ้งเตือนของใกล้หมด และสิทธิ์ผู้ใช้ 4 ระดับที่แอดมินกำหนดเมนูได้",
-        en: "Reports, Excel import and export, low-stock alerts, and four roles whose menus the admin sets",
+        th: "มีรายงาน นำเข้าและส่งออกเป็น Excel ได้ เตือนก่อนของหมด และแบ่งผู้ใช้ 4 ระดับ แอดมินเลือกได้ว่าแต่ละระดับเห็นเมนูไหน",
+        en: "Reports, Excel import and export, low-stock alerts, and four user roles, with the admin deciding which menus each one sees",
       },
       {
-        th: "เทสอัตโนมัติ 1,454 เคสในระบบคลัง และอีก 202 เคสในเว็บ GitHub Actions เทสและ build ทุกครั้ง ขึ้นระบบแล้วตรวจสุขภาพ ถ้าไม่ผ่านถอยกลับเอง สำรองฐานข้อมูลทุกคืน",
-        en: "1,454 automated tests on the inventory system and 202 on the website. GitHub Actions tests and builds every release, a health check rolls a bad one back, and the database is backed up nightly",
+        th: "มีเทสอัตโนมัติ 1,454 เคสในระบบคลังและ 202 เคสในเว็บ คอยเช็กว่าแก้จุดหนึ่งแล้วไม่ไปพังอีกจุด ทุกครั้งที่ขึ้นระบบจะเทสให้เอง ถ้าขึ้นแล้วมีปัญหาก็ถอยกลับเวอร์ชันเดิมเอง และสำรองฐานข้อมูลทุกคืน",
+        en: "1,454 automated tests on the inventory system and 202 on the website make sure a fix in one place doesn't break another. Every release is tested automatically and rolls itself back if something goes wrong, and the database is backed up every night",
       },
       {
-        th: "เว็บบริษัทสองภาษา 21 ผลงานใน 8 หมวด แอดมินแก้ได้ทั้งสองภาษา",
-        en: "A bilingual company site with 21 projects in 8 categories, all editable in both languages",
+        th: "เว็บบริษัทสองภาษา โชว์ผลงานก่อสร้าง 21 งานใน 8 หมวด แอดมินแก้เนื้อหาเองได้ทั้งสองภาษา",
+        en: "A bilingual company site showing 21 finished projects in 8 categories, which the admin edits in both languages",
       },
     ],
     stack: ["Next.js", "React", "TypeScript", "PostgreSQL", "Drizzle", "GitHub Actions", "DigitalOcean", "Cloudflare", "Vercel"],
@@ -353,10 +353,10 @@ export const projects: Project[] = [
     },
     role: { th: "ทำเว็บสองภาษา หลังบ้าน ระบบขอใบเสนอราคา และ SEO", en: "Built the bilingual site, the admin, quote requests and SEO" },
     points: [
-      { th: "ทำทั้งเว็บและเนื้อหาสินค้าให้เป็นไทย/อังกฤษ แยก URL /en สลับภาษาแล้วยังอยู่หน้าเดิม", en: "Thai and English for the whole site and every product, with /en URLs and a switch that keeps you on the same page" },
-      { th: "ขอใบเสนอราคาเข้ากล่องข้อความหลังบ้าน แจ้งเตือนเข้าอีเมล กันสแปมด้วย honeypot และจำกัดจำนวนครั้ง", en: "Quote requests land in an admin inbox and the office email, with a honeypot and rate limiting against spam" },
-      { th: "หลังบ้านแก้สินค้า หมวดหมู่ หน้าแรก ข่าว และรูปภาพได้เอง แบ่งสิทธิ์ ADMIN/EDITOR", en: "Admin for products, categories, home page sections, news and images, with ADMIN/EDITOR roles" },
-      { th: "SEO: hreflang, sitemap จากฐานข้อมูล, structured data ระดับสินค้า และ prerender ทั้งสองภาษา", en: "SEO: hreflang, a sitemap built from the database, product structured data, both languages prerendered" },
+      { th: "ทั้งเว็บและสินค้าทุกตัวมีภาษาไทยกับอังกฤษ กดสลับภาษาแล้วยังอยู่หน้าเดิม ไม่เด้งกลับหน้าแรก", en: "Thai and English for the whole site and every product, and switching language keeps you on the same page" },
+      { th: "ลูกค้ากดขอใบเสนอราคาแล้ว ข้อความเข้าหลังบ้านและอีเมลของบริษัททันที มีระบบกันสแปมบอท (honeypot และจำกัดจำนวนครั้ง)", en: "A quote request goes straight to the admin inbox and the office email, with spam protection (a honeypot and rate limiting)" },
+      { th: "พนักงานแก้สินค้า หมวดหมู่ หน้าแรก ข่าว และรูปภาพเองได้จากหลังบ้าน แบ่งสิทธิ์แอดมินกับคนแก้เนื้อหา", en: "Staff edit products, categories, the home page, news and images themselves, with separate admin and editor roles" },
+      { th: "ทำ SEO ให้ Google เจอหน้าสินค้าได้ทั้งสองภาษา (hreflang, sitemap จากฐานข้อมูล และ structured data ของสินค้า)", en: "SEO so Google finds every product in both languages (hreflang, a sitemap built from the database, product structured data)" },
     ],
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "NextAuth", "Vercel"],
     url: "https://www.blueoceantraders.co.th/",
@@ -383,10 +383,10 @@ export const projects: Project[] = [
     },
     role: { th: "คิดผลิตภัณฑ์ พัฒนา และดูแลระบบจริง", en: "Product, development and running the live service" },
     points: [
-      { th: "ตัวแยกประโยคภาษาไทยแบบใช้กฎ ไม่ต้องเรียก AI ถูก 94% ในชุดทดสอบ 306 ประโยค", en: "A rule-based Thai intent parser with no AI calls: 94% right on a 306-sentence held-out set" },
-      { th: "อ่านเอกสาร: OCR ผ่าน Google Drive ของผู้ใช้ ดึงยอด เลขที่ และวันครบกำหนด ค้นไฟล์จากคำข้างในได้", en: "Document reading: OCR through the user's own Google Drive, pulling out totals, numbers and due dates, with full-text search" },
-      { th: "ใช้ในกลุ่มไลน์ทั้งทีม: ตารางทีม มอบงาน ลางาน และเช็กชื่อตอนเช้า", en: "Works in LINE groups: team schedule, task assignment, leave and morning check-in" },
-      { th: "เทสอัตโนมัติ 2,835 เคส ขึ้นระบบผ่าน staging ทุกครั้ง ถ้าอะไรพังถอยกลับเอง", en: "2,835 automated tests; every release goes through staging and rolls back by itself if a step fails" },
+      { th: "พิมพ์ภาษาไทยแบบที่คุยกันปกติ เมมโม่ก็รู้ว่าเป็นนัด โน้ต หรือรายจ่าย ถูก 94% จากการทดสอบ 306 ประโยค โดยใช้กฎที่เขียนเอง ไม่ต้องเรียก AI", en: "Type in everyday Thai and MeMo works out whether it's a reminder, a note or an expense: right 94% of the time on 306 test sentences, using rules I wrote rather than an AI service" },
+      { th: "ส่งรูปสลิปหรือใบแจ้งหนี้มา เมมโม่อ่านยอด เลขที่ และวันครบกำหนดให้เอง (OCR ผ่าน Google Drive ของผู้ใช้) และค้นไฟล์จากคำที่อยู่ข้างในได้", en: "Send a photo of a slip or an invoice and MeMo reads the amount, the number and the due date (OCR through the user's own Google Drive). Files can be searched by the words inside them" },
+      { th: "ใช้ในกลุ่มไลน์ของทีมได้ ดูตารางรวม มอบงาน แจ้งลา และเช็กชื่อตอนเช้า", en: "Works in a team's LINE group too: a shared schedule, task assignment, leave and a morning check-in" },
+      { th: "มีเทสอัตโนมัติ 2,835 เคส ทุกครั้งที่อัปเดตจะลองบนระบบทดสอบก่อน ถ้ามีอะไรพังก็ถอยกลับเอง ไม่ให้ไปถึงคนใช้", en: "2,835 automated tests, and every update goes through a test server first and rolls itself back if anything fails, so a bad update doesn't reach users" },
     ],
     stack: ["Node.js", "TypeScript", "PostgreSQL", "LINE Messaging API", "LIFF", "Google Drive API", "PM2", "Cloudflare Tunnel"],
     url: "https://memo.whiteforces.com/",
@@ -408,24 +408,24 @@ export const projects: Project[] = [
     role: { th: "ออกแบบระบบ พัฒนา ลงพื้นที่ และดูแลระบบสดในวันงาน", en: "Designed and built it, went on site, and ran it live on the day" },
     points: [
       {
-        th: "ลงทะเบียนจบในหน้าเดียว ความยินยอม PDPA แยกกับการรับข่าว แลกด้วยสิทธิ์ถ่ายรูปฟรีที่ซุ้ม วันงานมีคนลงทะเบียนอย่างน้อย 465 คน",
-        en: "One-screen sign-up with PDPA consent kept separate from news opt-in, traded for a free photo at the booth; at least 465 people signed up on the day",
+        th: "ลงทะเบียนจบในหน้าเดียว แลกกับสิทธิ์ถ่ายรูปฟรีที่ซุ้ม ขอความยินยอม PDPA แยกกับการรับข่าวสาร วันงานมีคนลงทะเบียนอย่างน้อย 465 คน",
+        en: "One-screen sign-up in exchange for a free photo at the booth, with PDPA consent asked separately from news opt-in. At least 465 people signed up on the day",
       },
       {
-        th: "คอนโซลผู้จัด: แดชบอร์ด ข้อมูลผู้ชมรายคนพร้อมแท็กและสถานะความยินยอม ส่งออก Excel พร้อมกราฟ",
-        en: "Organiser console: a dashboard, a record per attendee with tags and consent status, and an Excel export with charts",
+        th: "ผู้จัดมีหน้าจัดการของตัวเอง ดูภาพรวม ดูข้อมูลผู้ชมทีละคนพร้อมแท็กและสถานะความยินยอม และส่งออกเป็น Excel พร้อมกราฟได้",
+        en: "The organiser gets their own console: an overview, a record for each guest with tags and consent status, and an Excel export with charts",
       },
       {
-        th: "ตรวจที่นั่งกับผังจริงของฮอลล์ 1,053 ที่นั่ง ทีมหน้าประตูพิมพ์เลขที่นั่งแล้วรู้ว่าใครเข้างาน",
-        en: "Seats checked against the hall's real 1,053-seat chart; the door crew types a seat and sees who came in",
+        th: "เลขที่นั่งที่กรอกจะเช็กกับผังจริงของฮอลล์ทั้ง 1,053 ที่นั่ง ทีมหน้าประตูพิมพ์เลขที่นั่งแล้วรู้เลยว่าใครเข้างานแล้ว",
+        en: "Seat numbers are checked against the hall's real 1,053-seat chart, and the door crew types a seat to see who's come in",
       },
       {
-        th: "ทดสอบโหลด 1,000 คนต่อนาที ตอบใน 60 ms (p95) มีเซิร์ฟเวอร์สำรองที่สลับเองและซ้อมสลับจริงก่อนวันงาน สำรองข้อมูลทุก 5 นาทีระหว่างงาน",
-        en: "Load-tested at 1,000 sign-ups a minute with a 60 ms p95, a standby server that takes over by itself (rehearsed before the show), and backups every 5 minutes during the event",
+        th: "ก่อนวันงานลองให้คนลงทะเบียนพร้อมกัน 1,000 คนต่อนาที เกือบทุกคำขอยังตอบภายใน 0.06 วินาที มีเซิร์ฟเวอร์สำรองที่ขึ้นมาแทนเองถ้าตัวหลักล่ม (ซ้อมสลับจริงแล้ว) และสำรองข้อมูลทุก 5 นาทีระหว่างงาน",
+        en: "Before the show I pushed 1,000 sign-ups a minute through it, and nearly every request was still answered within 0.06 seconds. A standby server takes over by itself if the main one fails (rehearsed before the show), and data was backed up every 5 minutes during the event",
       },
       {
-        th: "หลังงาน ทำคอนโซล HQ ที่สร้างบอทงานใหม่จากบอทนี้เป็นแม่แบบ และดูแลบอททุกตัวได้จากที่เดียว",
-        en: "After the show, built an HQ console that spins up bots for new events from this one and watches them all in one place",
+        th: "หลังงาน ทำคอนโซล HQ ที่ใช้บอทนี้เป็นแม่แบบ สร้างบอทให้งานใหม่ได้เลย และดูแลบอททุกตัวได้จากที่เดียว",
+        en: "After the show, I built an HQ console that uses this bot as a template for new events and keeps an eye on all of them in one place",
       },
     ],
     stack: ["Node.js", "TypeScript", "Express", "SQLite", "React", "Tailwind CSS", "LINE Messaging API", "LIFF", "Cloudflare Tunnel"],
@@ -468,9 +468,9 @@ export const projects: Project[] = [
     },
     role: { th: "ออกแบบ พัฒนา และขึ้นระบบ", en: "Design, development and deployment" },
     points: [
-      { th: "ผังที่นั่ง: เลือกโซนแล้วเลือกที่นั่งทีละแถว ราคาและที่ว่างอัปเดตทันที จำกัด 4 ที่ต่อบัญชี ล็อกที่นั่ง 10 นาทีตอนจ่ายเงิน", en: "Seat map: pick a block, then seats row by row, with live prices and availability, 4 seats per account and a 10-minute hold at checkout" },
-      { th: "หลังบ้านภาษาไทย 13 หน้า บันทึกอัตโนมัติ มี undo/redo และเตือนเมื่อมีคนแก้จากอีกเครื่อง", en: "A 13-page Thai admin with autosave, undo/redo and a warning when someone edits from another device" },
-      { th: "เก็บข้อมูลได้ทั้งไฟล์บน VPS หรือ Postgres กับ Blob บน Vercel เลือกจาก env อย่างเดียว", en: "Stores data in files on a VPS or in Postgres and Blob on Vercel, picked by environment variables alone" },
+      { th: "เลือกโซนแล้วเลือกที่นั่งจากผัง ราคาและที่ว่างอัปเดตทันที ซื้อได้คนละไม่เกิน 4 ที่ และระหว่างจ่ายเงินจะกันที่นั่งไว้ให้ 10 นาที", en: "Pick a zone, then seats on the map, with live prices and availability, up to 4 seats per account, and seats held for 10 minutes while you pay" },
+      { th: "หลังบ้านภาษาไทย 13 หน้า บันทึกให้เอง กดย้อนกลับได้ และเตือนถ้ามีคนแก้จากอีกเครื่องพร้อมกัน", en: "A 13-page Thai admin that saves as you go, has undo and redo, and warns you if someone else is editing from another device" },
+      { th: "ย้ายไปรันได้ทั้งบนเซิร์ฟเวอร์ของตัวเอง (VPS) หรือบน Vercel แค่เปลี่ยนค่าตั้งค่า ไม่ต้องแก้โค้ด", en: "Runs on its own server (VPS) or on Vercel, switched with settings alone, no code changes" },
       { th: "เนื้อหาบนเว็บตอนนี้ยังเป็นข้อมูลตัวอย่าง รอข้อมูลจริงจากลูกค้า", en: "The shows on the site are still sample content until the client's own arrives" },
     ],
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "shadcn/ui", "Neon Postgres", "Vercel"],
@@ -502,16 +502,16 @@ export const projects: Project[] = [
     role: { th: "พัฒนาระบบและส่งมอบให้หน่วยงาน", en: "Built the system and handed it over to the agency" },
     points: [
       {
-        th: "หลังบ้านใช้ PostgreSQL พร้อม migration ที่มีเวอร์ชัน และติดตั้งทั้งระบบได้ด้วย Docker คำสั่งเดียว",
-        en: "A PostgreSQL backend with versioned migrations, and the whole system runs with one Docker command",
+        th: "ติดตั้งทั้งระบบได้ด้วยคำสั่งเดียว (Docker) และอัปเดตโครงสร้างฐานข้อมูล PostgreSQL ได้ทีละขั้น ข้อมูลเดิมไม่หาย",
+        en: "The whole system installs with one command (Docker), and the PostgreSQL database is updated step by step without losing data",
       },
       {
-        th: "เส้นทางอนุมัติของศูนย์เขต ผู้ปฏิบัติหน้าที่แทนต้องกดรับก่อน ยกเลิกได้ทุกขั้นผ่านสายเดิม และโอนสิทธิ์อนุมัติตอนไม่อยู่",
-        en: "The regional approval route, acting colleagues who must accept first, cancellation at any step through the same chain, and delegating approval while away",
+        th: "ใบลาของศูนย์เขตส่งไปหาผู้อนุมัติตามสายของเขตเอง คนที่ถูกฝากงานต้องกดรับก่อน ยกเลิกได้ทุกขั้น และหัวหน้าฝากสิทธิ์อนุมัติให้คนอื่นตอนไม่อยู่ได้",
+        en: "Requests from regional centres go up their own chain of approvers, the colleague covering for you has to accept first, a request can be cancelled at any step, and approvers can hand over approval while they're away",
       },
       {
-        th: "สิทธิ์วันลาพักผ่อนตามอายุราชการ อีเมลแจ้งเตือน และฟอร์มใบลา PDF ตามแบบราชการ",
-        en: "Vacation entitlement by years of service, e-mail notifications, and the official PDF leave form",
+        th: "คิดวันลาพักผ่อนตามอายุราชการให้เอง มีอีเมลแจ้งเตือน และพิมพ์ใบลาเป็น PDF ตามแบบฟอร์มราชการได้",
+        en: "Vacation days worked out from years of service, email notifications, and the official leave form as a PDF",
       },
       {
         th: "แก้ตามรายการที่หน่วยงานขอจากการประชุมสองรอบ รวมถึงหน้าตาของระบบ และทำคู่มือผู้ใช้ 31 หน้ากับสไลด์นำเสนอ",
@@ -527,7 +527,7 @@ export const projects: Project[] = [
       facts: [
         { value: "4", label: { th: "ขั้นอนุมัติ", en: "approval steps" } },
         { value: "12", label: { th: "ศูนย์เขต", en: "regional centres" } },
-        { value: "9", label: { th: "ประเภทการลา", en: "leave types" } },
+        { value: "9", label: { th: "ประเภทการ\u2060ลา", en: "leave types" } },
       ],
     },
     shot: shotEleave,
@@ -545,7 +545,7 @@ export const projects: Project[] = [
     client: { th: "ต้นแบบให้เหล่าทหารปืนใหญ่ กองทัพบก\u2060ไทย", en: "A prototype for the Royal Thai Army Artillery" },
     year: "2026",
     summary: {
-      th: "อุปกรณ์มือถือสีเหลืองติด GPS เข็มทิศดิจิทัล และวิทยุ LoRa ประจำปืนแต่ละกระบอก บอกพิกัดและทิศของปืนเป็นมิล แล้วส่งเข้าเว็บแอปศูนย์อำนวยการยิงบนโน้ตบุ๊ก ศูนย์เห็นปืนทุกกระบอกบนแผนที่และส่งข้อมูลกลับไปที่จอของปืนได้ ทำงานได้กลางสนามโดยไม่ต้องมีอินเทอร์เน็ต",
+      th: "อุปกรณ์สีเหลืองประจำปืนแต่ละกระบอก มี GPS เข็มทิศดิจิทัล และวิทยุ LoRa บอกพิกัดและทิศของปืนเป็นหน่วยมิล แล้วส่งเข้าเว็บแอปศูนย์อำนวยการยิงบนโน้ตบุ๊ก ศูนย์เห็นปืนทุกกระบอกบนแผนที่และส่งข้อมูลกลับไปที่จอของปืนได้ ใช้งานกลางสนามได้โดยไม่ต้องมีอินเทอร์เน็ต",
       en: "Yellow handheld units with GPS, a digital compass and a LoRa radio, one per gun. Each shows the gun's grid reference and heading in mils and sends them to a fire direction web app on a laptop, which sees every gun on a map and sends data back to each gun's screen. It all works in the field with no internet.",
     },
     role: {
@@ -554,20 +554,20 @@ export const projects: Project[] = [
     },
     points: [
       {
-        th: "เฟิร์มแวร์ประจำปืนบน ESP32-S3 (FreeRTOS สองคอร์) อ่านทิศจากเข็มทิศ RM3100 คาลิเบรตตัดผลจากโลหะของปืน และหาทิศเหนืออ้างอิงจาก GPS ระหว่างเคลื่อนที่",
-        en: "Gun-unit firmware on an ESP32-S3 (FreeRTOS on both cores): heading from an RM3100 compass, calibration that cancels the gun's metal, and a north reference learned from GPS on the move",
+        th: "ตัวเครื่องประจำปืนอ่านทิศจากเข็มทิศดิจิทัล ชดเชยค่าที่เพี้ยนจากเหล็กของตัวปืน และใช้ GPS ช่วยหาทิศเหนือตอนเคลื่อนที่ (ESP32-S3, FreeRTOS)",
+        en: "The gun unit reads its heading from a digital compass, corrects for the gun's own steel, and uses GPS to find north while moving (ESP32-S3, FreeRTOS)",
       },
       {
-        th: "วิทยุใช้คลื่น 923 MHz ที่ใช้ได้ในไทย เข้ารหัสด้วย AES-128-CCM และกันการส่งซ้ำ",
-        en: "Radio on Thailand's 923 MHz band, encrypted with AES-128-CCM and protected against replay",
+        th: "วิทยุใช้คลื่น 923 MHz ที่ใช้ได้ถูกกฎหมายในไทย ทุกข้อความเข้ารหัส (AES-128) และกันการดักแล้วส่งซ้ำ",
+        en: "The radio uses the 923 MHz band that's legal in Thailand, and every message is encrypted (AES-128) and protected against replay",
       },
       {
-        th: "เว็บแอปศูนย์อำนวยการยิง: แผนที่ใช้ได้ออฟไลน์ สถานะปืนทุกกระบอกแบบสด ต่อดองเกิล USB แล้วเจอเองใน 1 วินาที แพ็กเป็นไฟล์เดียวเปิดใช้ได้ทันที",
-        en: "Fire direction web app: an offline map, live status for every gun, a USB dongle found by itself within a second, packaged as one file that just opens",
+        th: "เว็บแอปศูนย์อำนวยการยิงใช้แผนที่ได้แม้ไม่มีเน็ต เห็นสถานะปืนทุกกระบอกแบบสด เสียบดองเกิลวิทยุแล้วเจอเองใน 1 วินาที และรวมเป็นไฟล์เดียว ดับเบิลคลิกก็เปิดใช้ได้",
+        en: "The fire direction app works offline with a live map of every gun, finds the USB radio dongle by itself within a second, and comes as a single file you just open",
       },
       {
-        th: "ส่งข้อมูลต่อขึ้นศูนย์บัญชาการผ่าน MQTT แบบ mTLS พร้อมคิวเก็บไว้ตอนสัญญาณหลุด",
-        en: "An uplink to higher command over MQTT with mutual TLS and a queue that holds data while the link is down",
+        th: "ส่งข้อมูลต่อขึ้นศูนย์บัญชาการแบบเข้ารหัส (MQTT + mTLS) ถ้าสัญญาณหลุดก็เก็บไว้ส่งทีหลัง ข้อมูลไม่หาย",
+        en: "Data goes on to higher command over an encrypted link (MQTT with mutual TLS), and if the link drops it waits in a queue, so nothing is lost",
       },
     ],
     stack: ["ESP32-S3", "C++", "FreeRTOS", "LoRa", "Python", "Flask", "Leaflet", "MQTT", "FastAPI", "PostGIS"],
@@ -577,7 +577,7 @@ export const projects: Project[] = [
         en: "A module on each gun reports its position and heading by radio to a fire direction web app, out in the field with no internet.",
       },
       facts: [
-        { value: "923", label: { th: "MHz วิทยุ LoRa", en: "MHz LoRa radio" } },
+        { value: "923", label: { th: "MHz คลื่นที่ใช้ได้ในไทย", en: "MHz, legal in Thailand" } },
         { value: "AES", label: { th: "เข้ารหัสทุกข้อความ", en: "every message encrypted" } },
         { value: "0", label: { th: "เน็ตที่ต้องใช้", en: "internet needed" } },
       ],
