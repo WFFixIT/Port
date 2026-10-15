@@ -88,7 +88,7 @@ export function SiteHeader() {
             {profile.name}
           </a>
 
-          <nav aria-label="Primary" className="max-md:hidden">
+          <nav aria-label="Primary" className="max-lg:hidden">
             <ul className="flex items-center gap-1">
               {ui.nav.map((item) => (
                 <li key={item.id}>
@@ -110,7 +110,7 @@ export function SiteHeader() {
             <a
               href="#contact"
               onClick={(e) => go(e, "#contact")}
-              className="press inline-flex h-10 items-center rounded-full bg-signal px-5 text-[0.92rem] font-semibold text-on-signal hover:bg-signal-bright max-md:hidden"
+              className="press inline-flex h-10 items-center rounded-full bg-signal px-5 text-[0.92rem] font-semibold text-on-signal hover:bg-signal-bright max-lg:hidden"
             >
               {t(ui.talk)}
             </a>
@@ -217,7 +217,7 @@ function MobileMenu({
       <DialogPrimitive.Trigger asChild>
         <button
           type="button"
-          className="press inline-flex size-10 items-center justify-center rounded-full border border-paper/15 bg-ink/80 text-paper md:hidden"
+          className="press inline-flex size-10 items-center justify-center rounded-full border border-paper/15 bg-ink/80 text-paper lg:hidden"
           aria-label={t(ui.menu)}
         >
           <Menu className="size-[1.15rem]" aria-hidden />
