@@ -94,8 +94,10 @@ export function AppShowcase({ app, bleed = true, className }: { app: ShowcaseApp
         <ul
           ref={rowRef}
           onScroll={measure}
+          tabIndex={scrollable ? 0 : undefined}
+          aria-label={t({ th: `ภาพหน้าจอ ${app.name}`, en: `${app.name} screenshots` })}
           className={cn(
-            "relative grid auto-cols-[minmax(min(72vw,17.5rem),21rem)] grid-flow-col snap-x snap-mandatory gap-4 overflow-x-auto pb-3 [scrollbar-width:none]",
+            "relative grid auto-cols-[minmax(min(72vw,17.5rem),21rem)] grid-flow-col snap-x snap-mandatory gap-4 overflow-x-auto pb-3 [scrollbar-width:none] focus-visible:outline-offset-[-2px]",
             bleed && "bleed-x px-gutter [scroll-padding-inline:var(--gutter)] lg:mx-0 lg:px-0 lg:[scroll-padding-inline:0]",
           )}
         >

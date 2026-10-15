@@ -18,6 +18,7 @@ import { AppShowcase } from "@/components/site/app-showcase"
 import { LoopVideo } from "@/components/site/loop-video"
 import { TechChip } from "@/components/site/tech-icons"
 import { useSmoothScroll } from "@/components/providers/smooth-scroll"
+import { useOverflowsX } from "@/hooks/use-overflows-x"
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion"
 import { ui, work } from "@/lib/content"
 import { apps, ownSites, projects, type Field, type Project, type Shot } from "@/lib/projects"
@@ -131,6 +132,9 @@ function LineApps({ onOpen }: { onOpen: (i: number, at?: string) => void }) {
 function FieldStrip({ field, onOpen }: { field: Field; onOpen: () => void }) {
   const { t } = useLang()
   const shots = field.picks.map((i) => field.shots[i])
+  const rowRef = React.useRef<HTMLUListElement>(null)
+  // keyboard users can only scroll the row if it can take focus
+  const scrolls = useOverflowsX(rowRef)
   return (
     <div className="mt-10 grid gap-x-10 gap-y-6 lg:grid-cols-[minmax(0,18rem)_minmax(0,1fr)] lg:items-end">
       <div>
@@ -146,7 +150,10 @@ function FieldStrip({ field, onOpen }: { field: Field; onOpen: () => void }) {
         </button>
       </div>
       <ul
-        className="bleed-x px-gutter flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 [scroll-padding-inline:var(--gutter)] [scrollbar-width:none] sm:mx-0 sm:overflow-visible sm:px-0 sm:pb-0"
+        ref={rowRef}
+        tabIndex={scrolls ? 0 : undefined}
+        aria-label={t(field.title)}
+        className="bleed-x px-gutter flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 [scroll-padding-inline:var(--gutter)] [scrollbar-width:none] focus-visible:outline-offset-[-2px] sm:mx-0 sm:overflow-visible sm:px-0 sm:pb-0"
       >
         {shots.map((s, i) => {
           const ratio = s.src.width / s.src.height
