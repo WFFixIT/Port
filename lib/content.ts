@@ -114,6 +114,11 @@ export const story = {
     labs: { th: "สตูดิโอเว็บไซต์และระบบ", en: "Websites & systems studio" },
     fixit: { th: "ร้านซ่อมคอม ใกล้ BTS\u00a0พญาไท", en: "Computer repair, by BTS Phaya Thai" },
   },
+  intern: {
+    unit: { th: "ศูนย์ไซเบอร์กองทัพบก", en: "Royal Thai Army" },
+    system: { th: "ระบบจัดการกำลังพล", en: "Personnel management system" },
+    training: { th: "ฝึกด้านความปลอดภัย", en: "Security training" },
+  },
   chapters: [
     {
       id: "mfu",
@@ -123,6 +128,15 @@ export const story = {
         en: "I studied at Mae Fah Luang in Chiang Rai and worked part-time in customer service during the semester breaks, so I like talking to people. On real projects I settle the requirements with the client first and write them up as a PRD before any code, so the work gets done in one pass, not build-then-fix. I think that's my biggest strength.",
       },
       place: { th: "เชียงราย", en: "Chiang Rai" },
+    },
+    {
+      id: "cyber",
+      title: { th: "ฝึกงานที่ศูนย์ไซเบอร์กองทัพบก", en: "Interning at the Army Cyber Center" },
+      body: {
+        th: "ก่อนเรียนจบ ผมได้ฝึกงานที่ศูนย์ไซเบอร์กองทัพบกเกือบ 4\u00a0เดือน ทำระบบจัดการกำลังพลที่มาเรียนหลักสูตรไซเบอร์ และได้เรียนเรื่องเครือข่ายกับความปลอดภัยไปด้วย ทั้งฝั่งป้องกันและฝั่งเจาะระบบ",
+        en: "Before graduating, I spent almost four months interning at the Army Cyber Center. I built a system for managing the people on its cyber courses, and learned networking and security along the way, from defending a network to breaking into one.",
+      },
+      place: { th: "ม.ค.–เม.ย. 2026", en: "Jan–Apr 2026" },
     },
     {
       id: "wf",

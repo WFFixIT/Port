@@ -3,7 +3,7 @@
 import * as React from "react"
 import Image from "next/image"
 import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion"
-import { ArrowUpRight, MapPin } from "lucide-react"
+import { ArrowUpRight, MapPin, ShieldCheck } from "lucide-react"
 
 import selfie from "@/assets/me/selfie.webp"
 import wfMark from "@/assets/brand/wf-mark.webp"
@@ -125,6 +125,8 @@ function ChapterVisual({ id }: { id: string }) {
   switch (id) {
     case "mfu":
       return <Polaroid />
+    case "cyber":
+      return <Internship />
     case "wf":
       return <Brands />
     case "fixit":
@@ -148,6 +150,35 @@ function Polaroid() {
         Software Engineering, MFU
       </figcaption>
     </figure>
+  )
+}
+
+function Internship() {
+  const { t } = useLang()
+  const rows = [
+    { title: story.intern.system, note: "React, Vite, TanStack Query" },
+    { title: story.intern.training, note: "Network, Blue team, Red team, OWASP" },
+  ]
+  return (
+    <div className="w-full max-w-[26rem] -rotate-[1.5deg] rounded-[1.75rem] border border-paper/12 bg-ink-raised p-6 shadow-[0_50px_90px_-30px_rgb(0_0_0/0.95)]">
+      <div className="flex items-center gap-4">
+        <span className="grid size-16 shrink-0 place-items-center rounded-2xl bg-ink-high text-signal ring-1 ring-paper/12">
+          <ShieldCheck className="size-8" aria-hidden />
+        </span>
+        <span className="min-w-0">
+          <span className="type-display block text-[2.4rem] text-paper">Army Cyber Center</span>
+          <span className="mt-1 block text-sm text-paper-dim">{t(story.intern.unit)}</span>
+        </span>
+      </div>
+      <ul className="mt-6">
+        {rows.map((r) => (
+          <li key={r.note} className="border-t border-paper/10 py-3.5">
+            <span className="block font-semibold text-paper">{t(r.title)}</span>
+            <span className="block text-sm text-paper-dim">{r.note}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }
 
