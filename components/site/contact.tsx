@@ -117,7 +117,7 @@ export function Contact() {
           </motion.div>
         </div>
 
-        <ul className="order-3 flex flex-col">
+        <ul className="order-3 flex flex-col max-lg:min-w-0">
           {rows.map((c) => (
             <ChannelRow key={c.id} {...c} />
           ))}
@@ -170,7 +170,7 @@ function ChannelRow({
         </span>
         <span className="min-w-0">
           <span className="block text-sm text-on-signal/70">{label}</span>
-          <span className="block truncate text-[1.15rem] font-semibold">{value}</span>
+          <span className="block truncate text-[clamp(0.9rem,0.5rem+1.75vw,1.15rem)] font-semibold">{value}</span>
         </span>
       </a>
       {copy ? (
