@@ -67,10 +67,6 @@ const contributions = (n: number, lang: Lang) =>
 
 export function Github() {
   const { t, lang } = useLang()
-  const links = [
-    { path: contact.github.handle, href: contact.github.href, note: github.profile },
-    { path: `${contact.github.handle}/Port`, href: contact.github.repo, note: github.source },
-  ]
 
   return (
     <section id="github" aria-labelledby="github-title" className="px-gutter relative py-[clamp(5rem,10vw,9rem)]">
@@ -121,35 +117,28 @@ export function Github() {
       <div className="mt-[clamp(3.5rem,7vw,6rem)]">
         <h3 className="mb-4 text-sm text-paper-dim">{t(github.links)}</h3>
         <ul className="border-t border-paper/12">
-          {links.map((link, i) => (
-            <li key={link.href} className="border-b border-paper/12">
-              <a
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="work-row group relative isolate grid grid-cols-[1fr_auto] items-center gap-x-6 gap-y-1 py-[clamp(1.25rem,2.4vw,2rem)] md:grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)_auto]"
-              >
-                <span aria-hidden className="work-row__fill absolute inset-x-[calc(var(--gutter)*-1)] inset-y-0 -z-10 bg-signal" />
-                <span
-                  className={cn(
-                    "type-display flex min-w-0 items-baseline text-paper transition-[translate,color] duration-500 ease-[var(--ease-out-expo)] max-sm:flex-col can-hover:group-hover:translate-x-4 can-hover:group-hover:text-on-signal",
-                    i === 0 ? "text-[clamp(2.6rem,1.4rem+4vw,5.25rem)]" : "text-[clamp(2rem,1.2rem+2.6vw,3.5rem)]",
-                  )}
-                >
-                  <span className="text-paper-dim/70 transition-colors duration-500 max-sm:mb-1 max-sm:text-[0.4em] can-hover:group-hover:text-on-signal/60">
-                    github.com/
-                  </span>
-                  <span className="min-w-0 break-all">{link.path}</span>
+          <li className="border-b border-paper/12">
+            <a
+              href={contact.github.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="work-row group relative isolate grid grid-cols-[1fr_auto] items-center gap-x-6 gap-y-1 py-[clamp(1.25rem,2.4vw,2rem)] md:grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)_auto]"
+            >
+              <span aria-hidden className="work-row__fill absolute inset-x-[calc(var(--gutter)*-1)] inset-y-0 -z-10 bg-signal" />
+              <span className="type-display flex min-w-0 items-baseline text-[clamp(2.6rem,1.4rem+4vw,5.25rem)] text-paper transition-[translate,color] duration-500 ease-[var(--ease-out-expo)] max-sm:flex-col can-hover:group-hover:translate-x-4 can-hover:group-hover:text-on-signal">
+                <span className="text-paper-dim/70 transition-colors duration-500 max-sm:mb-1 max-sm:text-[0.4em] can-hover:group-hover:text-on-signal/60">
+                  github.com/
                 </span>
-                <span className="text-paper/85 transition-colors duration-300 max-md:col-span-2 max-md:row-start-2 can-hover:group-hover:text-on-signal">
-                  {t(link.note)}
-                </span>
-                <span className="grid size-11 place-items-center rounded-full border border-paper/20 text-paper transition-[background-color,border-color,color,rotate] duration-500 ease-[var(--ease-out-expo)] max-md:col-start-2 max-md:row-start-1 can-hover:group-hover:-rotate-45 can-hover:group-hover:border-transparent can-hover:group-hover:bg-ink can-hover:group-hover:text-paper">
-                  <ArrowRight className="size-5" aria-hidden />
-                </span>
-              </a>
-            </li>
-          ))}
+                <span className="min-w-0 break-all">{contact.github.handle}</span>
+              </span>
+              <span className="text-paper/85 transition-colors duration-300 max-md:col-span-2 max-md:row-start-2 can-hover:group-hover:text-on-signal">
+                {t(github.profile)}
+              </span>
+              <span className="grid size-11 place-items-center rounded-full border border-paper/20 text-paper transition-[background-color,border-color,color,rotate] duration-500 ease-[var(--ease-out-expo)] max-md:col-start-2 max-md:row-start-1 can-hover:group-hover:-rotate-45 can-hover:group-hover:border-transparent can-hover:group-hover:bg-ink can-hover:group-hover:text-paper">
+                <ArrowRight className="size-5" aria-hidden />
+              </span>
+            </a>
+          </li>
         </ul>
       </div>
     </section>

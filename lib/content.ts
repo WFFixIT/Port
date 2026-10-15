@@ -40,7 +40,7 @@ export const contact = {
   line: { id: "ccaker.9", href: "https://line.me/ti/p/~ccaker.9" },
   phone: { label: "095 889 3776", href: "tel:+66958893776" },
   email: "nattaphat.nontha@gmail.com",
-  github: { handle: "WFFixIT", href: "https://github.com/WFFixIT", repo: "https://github.com/WFFixIT/Port" },
+  github: { handle: "WFFixIT", href: "https://github.com/WFFixIT" },
 }
 
 export const brands = {
@@ -194,8 +194,8 @@ export const work = {
 export const github = {
   title: { th: "GitHub", en: "GitHub" },
   intro: {
-    th: "งานส่วนใหญ่เป็นโค้ดของลูกค้าเลยตั้ง repo เป็น private แต่โค้ดของเว็บนี้เปิดให้ดูได้ ถ้าอยากดูโค้ดงานไหนเพิ่ม ทักมาได้เลย",
-    en: "Most of my work is client code, so those repositories are private. The code for this site is public, and if you'd like to see more, just ask.",
+    th: "งานส่วนใหญ่เป็นโค้ดของลูกค้าเลยตั้ง repo เป็น\u00a0private ถ้าอยากดูโค้ดงานไหน ทักมาได้เลย",
+    en: "Most of my work is client code, so those repositories are private. If you'd like to see the code for any project, just ask.",
   },
   contributions: { th: "contribution ในรอบปีที่ผ่านมา", en: "contributions in the last year" },
   repos: { th: "repo ที่มี commit ของผม", en: "repositories with my commits" },
@@ -209,7 +209,6 @@ export const github = {
   repoUnit: { th: "repo", en: "repos" },
   links: { th: "ลิงก์ GitHub", en: "Links" },
   profile: { th: "โปรไฟล์ GitHub ของผม", en: "My GitHub profile" },
-  source: { th: "โค้ดของเว็บนี้", en: "The code for this site" },
 }
 
 export type Channel = {
