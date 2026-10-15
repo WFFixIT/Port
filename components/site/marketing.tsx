@@ -53,7 +53,7 @@ export function Marketing() {
                 href={tiktok.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-1.5 text-sm font-semibold text-paper"
+                className="group -my-2 inline-flex items-center gap-1.5 py-2 text-sm font-semibold text-paper"
               >
                 <TiktokIcon className="size-3.5" aria-hidden />
                 <span className="underline decoration-paper/30 underline-offset-4 transition-colors duration-200 can-hover:group-hover:decoration-signal">

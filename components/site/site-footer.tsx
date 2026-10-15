@@ -64,23 +64,23 @@ export function SiteFooter() {
               .filter((item) => item.id !== "github")
               .map((item) => (
                 <li key={item.id}>
-                  <a href={`#${item.id}`} onClick={go(`#${item.id}`)} className="text-paper/80 transition-colors hover:text-paper">
+                  <a href={`#${item.id}`} onClick={go(`#${item.id}`)} className="-my-1 inline-block py-1 text-paper/80 transition-colors hover:text-paper">
                     {t(item.label)}
                   </a>
                 </li>
               ))}
             <li>
-              <a href="#contact" onClick={go("#contact")} className="text-paper/80 transition-colors hover:text-paper">
+              <a href="#contact" onClick={go("#contact")} className="-my-1 inline-block py-1 text-paper/80 transition-colors hover:text-paper">
                 {t(ui.talk)}
               </a>
             </li>
             <li>
-              <a href={contact.line.href} target="_blank" rel="noopener noreferrer" className="text-paper/80 transition-colors hover:text-paper">
+              <a href={contact.line.href} target="_blank" rel="noopener noreferrer" className="-my-1 inline-block py-1 text-paper/80 transition-colors hover:text-paper">
                 LINE
               </a>
             </li>
             <li>
-              <a href={contact.github.href} target="_blank" rel="noopener noreferrer" className="text-paper/80 transition-colors hover:text-paper">
+              <a href={contact.github.href} target="_blank" rel="noopener noreferrer" className="-my-1 inline-block py-1 text-paper/80 transition-colors hover:text-paper">
                 GitHub
               </a>
             </li>
