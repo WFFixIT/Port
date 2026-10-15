@@ -119,7 +119,10 @@ export function Archive() {
         </div>
       </div>
 
-      <p className="mt-14 text-center text-sm text-paper-dim">{t(archive.hint)}</p>
+      <p className="mt-14 text-center text-sm text-paper-dim">
+        <span className="can-hover:hidden">{t(archive.hintTouch)}</span>
+        <span className="hidden can-hover:inline">{t(archive.hint)}</span>
+      </p>
     </section>
   )
 }

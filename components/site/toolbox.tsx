@@ -15,7 +15,12 @@ export function Toolbox() {
       aria-labelledby="toolbox-title"
       titleId="toolbox-title"
       title={t(toolbox.title)}
-      subtitle={t(toolbox.subtitle)}
+      subtitle={
+        <>
+          {t(toolbox.subtitle)}
+          <span className="hidden can-hover:inline"> {t(toolbox.chase)}</span>
+        </>
+      }
       ctaText={t(toolbox.cta)}
       ctaHref="#contact"
       onCtaClick={(e) => {

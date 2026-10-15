@@ -351,14 +351,16 @@ export const archive = {
     memo: { th: "ลองในไลน์", en: "Try it on LINE" },
   },
   hint: { th: "วางเมาส์เพื่อแง้มแฟ้ม คลิกเพื่อเปิด", en: "Hover to peek, click to open" },
+  hintTouch: { th: "แตะแฟ้มเพื่อเปิด", en: "Tap a folder to open it" },
 }
 
 export const toolbox = {
   title: { th: "ใช้อะไรทำงานบ้าง", en: "What I work with" },
   subtitle: {
-    th: "เขียนโค้ด เอาระบบขึ้น ไปจนถึงตัดคลิปลง TikTok ใช้ของพวกนี้แทบทุกวัน ลองเอาเมาส์ไล่ดูได้",
-    en: "Writing code, shipping it, cutting clips for TikTok: I use these pretty much every day. Try chasing them with your cursor.",
+    th: "เขียนโค้ด เอาระบบขึ้น ไปจนถึงตัดคลิปลง TikTok ใช้ของพวกนี้แทบทุกวัน",
+    en: "Writing code, shipping it, cutting clips for TikTok: I use these pretty much every day.",
   },
+  chase: { th: "ลองเอาเมาส์ไล่ดูได้", en: "Try chasing them with your cursor." },
   cta: { th: "ติดต่อผม", en: "Contact me" },
 }
 

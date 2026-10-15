@@ -18,7 +18,7 @@ interface IconProps {
 export interface FloatingIconsHeroProps {
   title: string
   titleId?: string
-  subtitle: string
+  subtitle: React.ReactNode
   ctaText: string
   ctaHref: string
   onCtaClick?: React.MouseEventHandler<HTMLAnchorElement>
