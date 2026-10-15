@@ -65,7 +65,7 @@ export function AppShowcase({ app, bleed = true, className }: { app: ShowcaseApp
             href={app.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="press inline-flex h-10 items-center justify-center gap-2 rounded-full bg-[#06c755] px-5 text-sm font-bold text-white hover:bg-[#05b14c] max-sm:w-full"
+            className="press inline-flex h-10 items-center justify-center gap-2 rounded-full bg-[#06c755] px-5 text-sm font-bold text-ink hover:bg-[#05b14c] max-sm:w-full"
           >
             <LineIcon className="size-4" aria-hidden />
             {t(app.cta)}

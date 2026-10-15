@@ -169,7 +169,7 @@ function ChannelRow({
           {icon}
         </span>
         <span className="min-w-0">
-          <span className="block text-sm text-on-signal/70">{label}</span>
+          <span className="block text-sm text-on-signal/80">{label}</span>
           <span className="block truncate text-[clamp(0.9rem,0.5rem+1.75vw,1.15rem)] font-semibold">{value}</span>
         </span>
       </a>

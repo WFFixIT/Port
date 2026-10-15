@@ -126,7 +126,7 @@ export function Github() {
             >
               <span aria-hidden className="work-row__fill absolute inset-x-[calc(var(--gutter)*-1)] inset-y-0 -z-10 bg-signal" />
               <span className="type-display flex min-w-0 items-baseline text-[clamp(2.6rem,1.4rem+4vw,5.25rem)] text-paper transition-[translate,color] duration-500 ease-[var(--ease-out-expo)] max-sm:flex-col can-hover:group-hover:translate-x-4 can-hover:group-hover:text-on-signal">
-                <span className="text-paper-dim/70 transition-colors duration-500 max-sm:mb-1 max-sm:text-[0.4em] can-hover:group-hover:text-on-signal/60">
+                <span className="text-paper-dim/80 transition-colors duration-500 max-sm:mb-1 max-sm:text-[0.4em] can-hover:group-hover:text-on-signal/60">
                   github.com/
                 </span>
                 <span className="min-w-0 break-all">{contact.github.handle}</span>
