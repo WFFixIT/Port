@@ -162,7 +162,7 @@ export const memo: ShowcaseApp = {
   href: "https://line.me/R/ti/p/@398yatur",
   cta: { th: "เพิ่มเพื่อน", en: "Add on LINE" },
   facts: [
-    { value: "94%", label: { th: "เข้าใจประโยคไทยถูก", en: "Thai sentences understood" } },
+    { value: "4 in 1", label: { th: "โน้ต นัด รายจ่าย งานทีม", en: "notes, reminders, expenses, tasks" } },
     { value: "0", label: { th: "แอปที่ต้องโหลดเพิ่ม", en: "apps to install" } },
     { value: "Drive", label: { th: "ไฟล์อยู่ในไดรฟ์ของคุณเอง", en: "files stay in your own Drive" } },
     { value: "TH/EN", label: { th: "สองภาษา", en: "two languages" } },
@@ -383,7 +383,7 @@ export const projects: Project[] = [
     },
     role: { th: "คิดผลิตภัณฑ์ พัฒนา และดูแลระบบจริง", en: "Product, development and running the live service" },
     points: [
-      { th: "พิมพ์ภาษาไทยแบบที่คุยกันปกติ เมมโม่ก็รู้ว่าเป็นนัด โน้ต หรือรายจ่าย ถูก 94% จากการทดสอบ 306 ประโยค โดยใช้กฎที่เขียนเอง ไม่ต้องเรียก AI", en: "Type in everyday Thai and MeMo works out whether it's a reminder, a note or an expense: right 94% of the time on 306 test sentences, using rules I wrote rather than an AI service" },
+      { th: "พิมพ์ภาษาไทยแบบที่คุยกันปกติ เมมโม่ก็รู้ว่าเป็นนัด โน้ต หรือรายจ่าย ข้อความส่วนใหญ่แยกด้วยกฎภาษาไทยของระบบเอง ส่วนประโยคที่กำกวมค่อยให้ AI ช่วยอ่านอีกที", en: "Type in everyday Thai and MeMo works out whether it's a reminder, a note or an expense. Its own Thai rules handle most messages, and AI only reads the unclear ones" },
       { th: "ส่งรูปสลิปหรือใบแจ้งหนี้มา เมมโม่อ่านยอด เลขที่ และวันครบกำหนดให้เอง (OCR ผ่าน Google Drive ของผู้ใช้) และค้นไฟล์จากคำที่อยู่ข้างในได้", en: "Send a photo of a slip or an invoice and MeMo reads the amount, the number and the due date (OCR through the user's own Google Drive). Files can be searched by the words inside them" },
       { th: "ใช้ในกลุ่มไลน์ของทีมได้ ดูตารางรวม มอบงาน แจ้งลา และเช็กชื่อตอนเช้า", en: "Works in a team's LINE group too: a shared schedule, task assignment, leave and a morning check-in" },
       { th: "มีเทสอัตโนมัติ 2,835 เคส ทุกครั้งที่อัปเดตจะลองบนระบบทดสอบก่อน ถ้ามีอะไรพังก็ถอยกลับเอง ไม่ให้ไปถึงคนใช้", en: "2,835 automated tests, and every update goes through a test server first and rolls itself back if anything fails, so a bad update doesn't reach users" },
