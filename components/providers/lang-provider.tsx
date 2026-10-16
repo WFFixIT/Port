@@ -3,6 +3,7 @@
 import * as React from "react"
 
 import { site, type Lang, type Localized } from "@/lib/content"
+import { keepThaiWords } from "@/lib/thai"
 
 type LangContextValue = {
   lang: Lang
@@ -80,7 +81,7 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
     )
   }, [])
 
-  const t = React.useCallback((copy: Localized) => copy[lang], [lang])
+  const t = React.useCallback((copy: Localized) => (lang === "th" ? keepThaiWords(copy.th) : copy.en), [lang])
 
   const value = React.useMemo(() => ({ lang, setLang, t }), [lang, setLang, t])
   return <LangContext.Provider value={value}>{children}</LangContext.Provider>

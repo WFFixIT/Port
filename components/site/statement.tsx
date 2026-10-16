@@ -61,7 +61,7 @@ export function Statement() {
   const reduce = usePrefersReducedMotion()
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.75", "end 0.85"] })
 
-  const tokens = React.useMemo(() => tokenize(statement[lang], lang), [lang])
+  const tokens = React.useMemo(() => tokenize(t(statement), lang), [t, lang])
   const lit = tokens.filter((x) => x.kind !== "space").length
   let n = 0
 
