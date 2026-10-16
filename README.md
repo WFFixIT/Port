@@ -31,6 +31,7 @@ components/ui/        shadcn-style components (path set in components.json)
 components/providers/ language, scrolling, intro and motion settings
 lib/content.ts        all copy, as { th, en } pairs
 lib/projects.ts       project data, app screens and photos
+lib/thai.ts           Thai words kept on one line
 lib/github-stats.json numbers for the GitHub section
 assets/               images imported statically
 public/clips/         short muted clips (.mp4 + .webm)
@@ -41,6 +42,7 @@ scripts/              github-stats.mjs
 ## Updating
 
 - Text: edit `lib/content.ts`.
+- A Thai word that splits across two lines: add it to `lib/thai.ts`, with `|` where the browser splits it.
 - A new project: add screenshots to `assets/work/` (desktop 1600x1000, full page 960 wide, phone 585 wide) and an entry in `lib/projects.ts`.
 - The "try them yourself" folders: a 544x368 image without the site's header goes in `public/work/folder-<slug>.webp`, and the entry in `components/site/archive.tsx`.
 - GitHub numbers: `node scripts/github-stats.mjs` (uses `GITHUB_TOKEN` or the gh CLI login) rewrites `lib/github-stats.json`.
