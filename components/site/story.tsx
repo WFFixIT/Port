@@ -78,7 +78,7 @@ export function Story() {
 
         <motion.ol
           ref={trackRef}
-          style={wide && !reduce ? { x } : undefined}
+          style={{ x: wide && !reduce ? x : 0 }}
           className="px-gutter flex flex-1 flex-col gap-16 pb-24 in-data-wide:w-max in-data-wide:flex-row in-data-wide:items-stretch in-data-wide:gap-0 in-data-wide:pb-[clamp(3.5rem,9svh,7rem)]"
         >
           {story.chapters.map((c, i) => (

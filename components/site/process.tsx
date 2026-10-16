@@ -80,7 +80,7 @@ function StepCard({
   const dim = useTransform(progress, [start, Math.min(1, start + 0.3)], [0, last ? 0 : 0.45])
   return (
     <motion.div
-      style={reduce ? undefined : { scale }}
+      style={{ scale: reduce ? 1 : scale }}
       className={cn(
         "relative origin-top overflow-hidden rounded-[clamp(1.5rem,3vw,2.5rem)] border p-[clamp(1.75rem,4vw,3.5rem)] md:min-h-[21rem]",
         last

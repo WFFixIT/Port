@@ -89,7 +89,7 @@ export function Statement() {
 
 function Word({ progress, range, reduce, text }: { progress: MotionValue<number>; range: [number, number]; reduce: boolean; text: string }) {
   const opacity = useTransform(progress, range, [0.14, 1])
-  return <motion.span style={reduce ? undefined : { opacity }}>{text}</motion.span>
+  return <motion.span style={{ opacity: reduce ? 1 : opacity }}>{text}</motion.span>
 }
 
 function Media({
@@ -108,7 +108,7 @@ function Media({
   const opacity = useTransform(progress, range, [0, 1])
   return (
     <motion.span
-      style={reduce ? undefined : { scale, opacity }}
+      style={reduce ? { scale: 1, opacity: 1 } : { scale, opacity }}
       className="statement-pic relative mx-[0.1em] inline-block h-[0.82em] w-[1.7em] overflow-hidden rounded-full align-[-0.06em] ring-1 ring-paper/15"
     >
       {video ? (

@@ -19,7 +19,7 @@ export function Ribbons() {
 
   return (
     <div ref={ref} className="relative z-10 -mt-11 h-[clamp(9rem,17vw,15rem)] overflow-hidden" role="presentation">
-      <motion.div style={reduce ? undefined : { skewY: skew }} className="absolute inset-0">
+      <motion.div style={{ skewY: reduce ? 0 : skew }} className="absolute inset-0">
         <Ribbon
           items={ribbons.places[lang]}
           className="top-[48%] rotate-[2.4deg] bg-paper text-ink"

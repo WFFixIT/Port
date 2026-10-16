@@ -74,7 +74,7 @@ export function Contact() {
       <div className="px-gutter pt-[clamp(6rem,11vw,10rem)]">
         <h2 id="contact-title" className="overflow-hidden text-center">
           <motion.span
-            style={reduce ? undefined : { y: words }}
+            style={{ y: reduce ? 0 : words }}
             className="type-display block text-[clamp(5rem,1rem+17vw,19rem)] text-ink lang-th:text-[clamp(4.25rem,0.5rem+15vw,16rem)]"
           >
             {t(contactCopy.heading)}
@@ -106,7 +106,7 @@ export function Contact() {
         </div>
 
         <div className="relative order-1 mx-auto -mt-3 aspect-[1436/1600] w-[min(30rem,88vw)] max-xl:overflow-hidden md:col-span-2 lg:-mt-[clamp(4rem,7vw,7.5rem)] xl:order-2 xl:col-span-1 xl:-mb-[clamp(2rem,5vw,4rem)] xl:w-full xl:max-w-[30rem]">
-          <motion.div style={reduce ? undefined : { y: rise }} className="absolute inset-0">
+          <motion.div style={{ y: reduce ? 0 : rise }} className="absolute inset-0">
             <Image
               src={pointing}
               alt={t(contactCopy.portraitAlt)}

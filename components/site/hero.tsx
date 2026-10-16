@@ -89,7 +89,7 @@ export function Hero() {
       <GiantWord left={left} right={right} />
 
       <div className="hero-portrait pointer-events-none absolute bottom-0 left-1/2 z-20 aspect-[1072/1800] h-[min(80%,52rem)] -translate-x-1/2 [@media(max-aspect-ratio:4/5)]:h-[68%]">
-        <motion.div style={reduce ? undefined : { y: portraitY, scale: portraitScale }} className="relative size-full origin-bottom">
+        <motion.div style={reduce ? { y: 0, scale: 1 } : { y: portraitY, scale: portraitScale }} className="relative size-full origin-bottom">
           <Image
             src={portrait}
             alt={t(hero.portraitAlt)}
@@ -160,7 +160,7 @@ function GiantWord({ left, right }: { left: MotionValue<string>; right: MotionVa
       className="hero-word hero-word--solid pointer-events-none absolute inset-x-0 z-10 flex justify-center select-none"
     >
       {lines.map((letters, li) => (
-        <motion.span key={li} style={reduce ? undefined : { x: li === 0 ? left : right }} className="hero-line">
+        <motion.span key={li} style={{ x: reduce ? 0 : li === 0 ? left : right }} className="hero-line">
           {letters.map((ch, ci) => {
             const i = offsets[li] + ci
             return (
