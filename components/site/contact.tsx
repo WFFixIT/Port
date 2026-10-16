@@ -105,7 +105,7 @@ export function Contact() {
           </div>
         </div>
 
-        <div className="relative order-1 mx-auto -mt-3 aspect-[1436/1600] w-[min(30rem,88vw)] md:col-span-2 lg:-mt-[clamp(4rem,7vw,7.5rem)] xl:order-2 xl:col-span-1 xl:-mb-[clamp(2rem,5vw,4rem)] xl:w-full xl:max-w-[30rem]">
+        <div className="relative order-1 mx-auto -mt-3 aspect-[1436/1600] w-[min(30rem,88vw)] max-xl:overflow-hidden md:col-span-2 lg:-mt-[clamp(4rem,7vw,7.5rem)] xl:order-2 xl:col-span-1 xl:-mb-[clamp(2rem,5vw,4rem)] xl:w-full xl:max-w-[30rem]">
           <motion.div style={reduce ? undefined : { y: rise }} className="absolute inset-0">
             <Image
               src={pointing}
