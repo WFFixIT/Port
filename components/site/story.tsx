@@ -3,10 +3,11 @@
 import * as React from "react"
 import Image from "next/image"
 import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion"
-import { ArrowUpRight, MapPin, ShieldCheck } from "lucide-react"
+import { ArrowUpRight, MapPin } from "lucide-react"
 
 import selfie from "@/assets/me/selfie.webp"
 import wfMark from "@/assets/brand/wf-mark.webp"
+import cyberLogo from "@/assets/brand/army-cyber-center.png"
 import fixitPhonePoster from "@/assets/clips/fixit-phone-poster.webp"
 import shotLabs from "@/assets/work/labs.webp"
 import shot500day from "@/assets/work/500day.webp"
@@ -162,9 +163,8 @@ function Internship() {
   return (
     <div className="w-full max-w-[26rem] -rotate-[1.5deg] rounded-[1.75rem] border border-paper/12 bg-ink-raised p-6 shadow-[0_50px_90px_-30px_rgb(0_0_0/0.95)]">
       <div className="flex items-center gap-4">
-        <span className="grid size-16 shrink-0 place-items-center rounded-2xl bg-ink-high text-signal ring-1 ring-paper/12">
-          <ShieldCheck className="size-8" aria-hidden />
-        </span>
+        {/* served as is: the optimizer's lossy WebP smudges the small orange lettering */}
+        <Image src={cyberLogo} alt="" unoptimized className="size-16 shrink-0" />
         <span className="min-w-0">
           <span className="type-display block text-[2.4rem] text-paper">Army Cyber Center</span>
           <span className="mt-1 block text-sm text-paper-dim">{t(story.intern.unit)}</span>
