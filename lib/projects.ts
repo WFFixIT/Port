@@ -22,9 +22,6 @@ import blueoceanProductPhone from "@/assets/work/blueocean-product-phone.webp"
 import shotOnstage from "@/assets/work/onstage.webp"
 import fullOnstage from "@/assets/work/onstage-full.webp"
 import mobileOnstage from "@/assets/work/onstage-mobile.webp"
-import onstageSeats from "@/assets/work/onstage-seats.webp"
-import onstageTicket from "@/assets/work/onstage-ticket.webp"
-import onstageAdmin from "@/assets/work/onstage-admin.webp"
 import onstagePhone from "@/assets/work/onstage-phone.webp"
 import shotMemo from "@/assets/work/memo.webp"
 import memoIcon from "@/assets/work/memo/icon.webp"
@@ -459,16 +456,15 @@ export const projects: Project[] = [
   {
     slug: "onstage",
     name: "ONSTAGE",
-    kind: { th: "เว็บผู้จัดคอนเสิร์ต + ระบบขายบัตร", en: "Concert promoter site + box office" },
+    kind: { th: "เว็บผู้จัดคอนเสิร์ต", en: "Concert promoter site" },
     client: { th: "JUBILEE EXPERIENCE CO., LTD.", en: "JUBILEE EXPERIENCE CO., LTD." },
     year: "2026",
     summary: {
-      th: "เว็บบริษัทจัดคอนเสิร์ตสองภาษา ที่สลับเป็นระบบขายบัตรได้ด้วยสวิตช์เดียวในหลังบ้าน มีผังที่นั่ง คิวรอ ชำระเงิน และ e-ticket พร้อม QR ตอนนี้เปิดเป็นเว็บผลงานก่อน ระบบขายบัตรทำเสร็จแล้วรอวันเปิดขาย",
-      en: "A bilingual site for a concert promoter that turns into a box office with one switch in the admin: seat map, queue, checkout and QR e-tickets. It runs as a portfolio site for now; the box office is built and waiting for launch.",
+      th: "เว็บบริษัทจัดคอนเสิร์ตสองภาษา มีหลังบ้านภาษาไทยให้ทีมงานแก้เนื้อหาบนเว็บได้เอง",
+      en: "A bilingual site for a concert promoter, with a Thai admin panel so the team can update the site themselves.",
     },
     role: { th: "ออกแบบ พัฒนา และขึ้นระบบ", en: "Design, development and deployment" },
     points: [
-      { th: "เลือกโซนแล้วเลือกที่นั่งจากผัง ราคาและที่ว่างอัปเดตทันที ซื้อได้คนละไม่เกิน 4 ที่ และระหว่างจ่ายเงินจะกันที่นั่งไว้ให้ 10 นาที", en: "Pick a zone, then seats on the map, with live prices and availability, up to 4 seats per account, and seats held for 10 minutes while you pay" },
       { th: "หลังบ้านภาษาไทย 13 หน้า บันทึกให้เอง กดย้อนกลับได้ และเตือนถ้ามีคนแก้จากอีกเครื่องพร้อมกัน", en: "A 13-page Thai admin that saves as you go, has undo and redo, and warns you if someone else is editing from another device" },
       { th: "ย้ายไปรันได้ทั้งบนเซิร์ฟเวอร์ของตัวเอง (VPS) หรือบน Vercel แค่เปลี่ยนค่าตั้งค่า ไม่ต้องแก้โค้ด", en: "Runs on its own server (VPS) or on Vercel, switched with settings alone, no code changes" },
       { th: "เนื้อหาบนเว็บตอนนี้ยังเป็นข้อมูลตัวอย่าง รอข้อมูลจริงจากลูกค้า", en: "The shows on the site are still sample content until the client's own arrives" },
@@ -479,12 +475,7 @@ export const projects: Project[] = [
     full: fullOnstage,
     mobile: mobileOnstage,
     video: "/work/onstage-scroll",
-    gallery: [
-      { src: onstageSeats, frame: "desktop", caption: { th: "เลือกที่นั่งจากผังโซน", en: "Choosing seats on the zone map" } },
-      { src: onstageTicket, frame: "desktop", caption: { th: "e-ticket พร้อม QR หลังจ่ายเงิน", en: "The e-ticket with its QR code after payment" } },
-      { src: onstageAdmin, frame: "desktop", caption: { th: "หลังบ้าน: สวิตช์เปิดขายบัตรและภาพรวม", en: "Admin: the box-office switch and overview" } },
-      { src: onstagePhone, frame: "phone", caption: { th: "รายการคอนเสิร์ตบนมือถือ", en: "Upcoming shows on a phone" } },
-    ],
+    gallery: [{ src: onstagePhone, frame: "phone", caption: { th: "รายการคอนเสิร์ตบนมือถือ", en: "Upcoming shows on a phone" } }],
   },
   {
     slug: "eleave",

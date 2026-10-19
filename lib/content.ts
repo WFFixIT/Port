@@ -92,8 +92,8 @@ export const hero = {
 
 export const ribbons = {
   services: {
-    th: ["เว็บไซต์บริษัท", "ระบบคลังสินค้า", "แอปใน LINE", "LINE CRM", "ระบบลางาน", "ระบบขายบัตร", "ระบบหลังบ้าน", "อุปกรณ์ LoRa + GPS", "วาง SEO", "คลิป TikTok"],
-    en: ["Company websites", "Inventory systems", "LINE mini apps", "LINE CRM", "Leave management", "Ticketing", "Admin panels", "LoRa + GPS devices", "SEO", "TikTok clips"],
+    th: ["เว็บไซต์บริษัท", "ระบบคลังสินค้า", "แอปใน LINE", "LINE CRM", "ระบบลางาน", "ระบบหลังบ้าน", "อุปกรณ์ LoRa + GPS", "วาง SEO", "คลิป TikTok"],
+    en: ["Company websites", "Inventory systems", "LINE mini apps", "LINE CRM", "Leave management", "Admin panels", "LoRa + GPS devices", "SEO", "TikTok clips"],
   },
   places: {
     th: ["Next.js", "TypeScript", "React", "Node.js", "PostgreSQL", "LINE API", "LIFF", "Tailwind CSS", "Docker", "GitHub Actions"],
