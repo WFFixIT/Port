@@ -35,9 +35,9 @@ import memoCalendar from "@/assets/work/memo/calendar.webp"
 import bearWave from "@/assets/work/memo/bear-wave.webp"
 import bearClock from "@/assets/work/memo/bear-clock.webp"
 import bearFiling from "@/assets/work/memo/bear-filing.webp"
-import bearReading from "@/assets/work/memo/bear-reading.webp"
+import bearSearch from "@/assets/work/memo/bear-search.webp"
 import bearParty from "@/assets/work/memo/bear-party.webp"
-import bearThumbsup from "@/assets/work/memo/bear-thumbsup.webp"
+import bearCheck from "@/assets/work/memo/bear-check.webp"
 import shotEleave from "@/assets/work/eleave.webp"
 import eleaveRequest from "@/assets/work/eleave-request.webp"
 import eleaveApprove from "@/assets/work/eleave-approve.webp"
@@ -161,7 +161,7 @@ export const memo: ShowcaseApp = {
   facts: [
     { value: "4 in 1", label: { th: "โน้ต นัด รายจ่าย งานทีม", en: "notes, reminders, expenses, tasks" } },
     { value: "0", label: { th: "แอปที่ต้องโหลดเพิ่ม", en: "apps to install" } },
-    { value: "Drive", label: { th: "ไฟล์อยู่ในไดรฟ์ของคุณเอง", en: "files stay in your own Drive" } },
+    { value: "Drive / NAS", label: { th: "ไฟล์อยู่ในพื้นที่ของคุณเอง", en: "files stay in your own storage" } },
     { value: "TH/EN", label: { th: "สองภาษา", en: "two languages" } },
   ],
   screens: [
@@ -195,7 +195,7 @@ export const memo: ShowcaseApp = {
       caption: { th: "จำชื่อไฟล์ไม่ได้ ค้นจากคำในเอกสารก็เจอ", en: "Forgot the file name? Search the words inside it" },
       tone: lilac,
       bar: "light",
-      sticker: bearReading,
+      sticker: bearSearch,
     },
     {
       image: memoTeam,
@@ -211,7 +211,7 @@ export const memo: ShowcaseApp = {
       caption: { th: "เช็กชื่อตอนเช้า รู้ว่าใครเข้าออฟฟิศ ใคร\u00a0WFH", en: "Morning check-in: who's in the office, who's at home" },
       tone: honey,
       bar: "dark",
-      sticker: bearThumbsup,
+      sticker: bearCheck,
     },
   ],
 }
@@ -375,8 +375,8 @@ export const projects: Project[] = [
     client: { th: "ผลิตภัณฑ์ของ WF LABs", en: "A WF LABs product" },
     year: "2026",
     summary: {
-      th: "บอท LINE และแอปในไลน์ที่ช่วยทีมออฟฟิศ พิมพ์เหมือนคุยกับคน เมมโม่แยกเองว่าเป็นโน้ต นัด รายจ่าย หรืองานของทีม เก็บไฟล์เข้า Drive อ่านยอดจากสลิปและใบแจ้งหนี้ แล้วเตือนก่อนครบกำหนด",
-      en: "A LINE bot and an in-LINE app for office teams. Type the way you'd talk and MeMo files it as a note, a reminder, an expense or a team task. It keeps chat files in Google Drive, reads amounts off slips and invoices, and reminds you before they're due.",
+      th: "บอท LINE และแอปในไลน์ที่ช่วยทีมออฟฟิศ พิมพ์เหมือนคุยกับคน เมมโม่แยกเองว่าเป็นโน้ต นัด รายจ่าย หรืองานของทีม เก็บไฟล์เข้า Drive หรือ NAS ของทีม อ่านยอดจากสลิปและใบแจ้งหนี้ แล้วเตือนก่อนครบกำหนด",
+      en: "A LINE bot and an in-LINE app for office teams. Type the way you'd talk and MeMo files it as a note, a reminder, an expense or a team task. It keeps chat files in Google Drive or the team's own NAS, reads amounts off slips and invoices, and reminds you before they're due.",
     },
     role: { th: "คิดผลิตภัณฑ์ พัฒนา และดูแลระบบจริง", en: "Product, development and running the live service" },
     points: [
