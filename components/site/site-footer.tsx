@@ -84,6 +84,11 @@ export function SiteFooter() {
                 GitHub
               </a>
             </li>
+            <li>
+              <a href={contact.linkedin.href} target="_blank" rel="noopener noreferrer" className="-my-1 inline-block py-1 text-paper/80 transition-colors hover:text-paper">
+                LinkedIn
+              </a>
+            </li>
           </ul>
         </nav>
 

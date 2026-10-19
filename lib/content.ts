@@ -41,6 +41,7 @@ export const contact = {
   phone: { label: "095 889 3776", href: "tel:+66958893776" },
   email: "nattaphat.nontha@gmail.com",
   github: { handle: "WFFixIT", href: "https://github.com/WFFixIT" },
+  linkedin: { handle: "nattaphat-nonthawong", href: "https://www.linkedin.com/in/nattaphat-nonthawong" },
   resume: "/Nattaphat-Nonthawong-Resume.pdf",
 }
 

@@ -27,7 +27,7 @@ const person = {
   alumniOf: { "@type": "CollegeOrUniversity", name: "Mae Fah Luang University" },
   worksFor: { "@type": "Organization", name: "White Forces", url: brands.whiteForces },
   knowsAbout: ["Web development", "Next.js", "TypeScript", "LINE API", "SEO", "Social media marketing"],
-  sameAs: [contact.github.href],
+  sameAs: [contact.github.href, contact.linkedin.href],
   ...(publicUrl ? { url: publicUrl } : {}),
 }
 

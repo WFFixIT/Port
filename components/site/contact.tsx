@@ -8,7 +8,7 @@ import { toast } from "sonner"
 
 import pointing from "@/assets/me/portrait-point.webp"
 import { useLang } from "@/components/providers/lang-provider"
-import { GithubIcon, LineIcon } from "@/components/site/brand-icons"
+import { GithubIcon, LineIcon, LinkedinIcon } from "@/components/site/brand-icons"
 import { LineQr } from "@/components/site/line-qr"
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion"
 import { contact, contactCopy, ui } from "@/lib/content"
@@ -53,6 +53,13 @@ export function Contact() {
       label: "GitHub",
       value: contact.github.handle,
       href: contact.github.href,
+    },
+    {
+      id: "linkedin",
+      icon: <LinkedinIcon className="size-5" aria-hidden />,
+      label: "LinkedIn",
+      value: contact.linkedin.handle,
+      href: contact.linkedin.href,
     },
     {
       id: "resume",
