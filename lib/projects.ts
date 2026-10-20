@@ -23,6 +23,7 @@ import shotOnstage from "@/assets/work/onstage.webp"
 import fullOnstage from "@/assets/work/onstage-full.webp"
 import mobileOnstage from "@/assets/work/onstage-mobile.webp"
 import onstagePhone from "@/assets/work/onstage-phone.webp"
+import onstageShow from "@/assets/work/onstage-show.webp"
 import shotMemo from "@/assets/work/memo.webp"
 import memoIcon from "@/assets/work/memo/icon.webp"
 import memoToday from "@/assets/work/memo/today-bar.webp"
@@ -455,7 +456,7 @@ export const projects: Project[] = [
   },
   {
     slug: "onstage",
-    name: "ONSTAGE",
+    name: "JubileeX",
     kind: { th: "เว็บผู้จัดคอนเสิร์ต", en: "Concert promoter site" },
     client: { th: "JUBILEE EXPERIENCE CO., LTD.", en: "JUBILEE EXPERIENCE CO., LTD." },
     year: "2026",
@@ -465,9 +466,9 @@ export const projects: Project[] = [
     },
     role: { th: "ออกแบบ พัฒนา และขึ้นระบบ", en: "Design, development and deployment" },
     points: [
-      { th: "หลังบ้านภาษาไทย 13 หน้า บันทึกให้เอง กดย้อนกลับได้ และเตือนถ้ามีคนแก้จากอีกเครื่องพร้อมกัน", en: "A 13-page Thai admin that saves as you go, has undo and redo, and warns you if someone else is editing from another device" },
+      { th: "คอนเสิร์ตจริงของบริษัท ทั้งงานที่จัดไปแล้วและงานที่กำลังจะมา มีรูปจากคืนแสดง รายชื่อผู้แสดง และปุ่มซื้อบัตรที่ลิงก์ไป Ticketmelon", en: "The company's real concerts, past and upcoming, with photos from each night, who's on stage, and a ticket button that links to Ticketmelon" },
+      { th: "หลังบ้านภาษาไทย บันทึกให้เอง กดย้อนกลับได้ และเตือนถ้ามีคนแก้จากอีกเครื่องพร้อมกัน", en: "A Thai admin that saves as you go, has undo and redo, and warns you if someone else is editing from another device" },
       { th: "ย้ายไปรันได้ทั้งบนเซิร์ฟเวอร์ของตัวเอง (VPS) หรือบน Vercel แค่เปลี่ยนค่าตั้งค่า ไม่ต้องแก้โค้ด", en: "Runs on its own server (VPS) or on Vercel, switched with settings alone, no code changes" },
-      { th: "เนื้อหาบนเว็บตอนนี้ยังเป็นข้อมูลตัวอย่าง รอข้อมูลจริงจากลูกค้า", en: "The shows on the site are still sample content until the client's own arrives" },
     ],
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "shadcn/ui", "Neon Postgres", "Vercel"],
     url: "https://www.jubileex.co.th/",
@@ -475,7 +476,10 @@ export const projects: Project[] = [
     full: fullOnstage,
     mobile: mobileOnstage,
     video: "/work/onstage-scroll",
-    gallery: [{ src: onstagePhone, frame: "phone", caption: { th: "รายการคอนเสิร์ตบนมือถือ", en: "Upcoming shows on a phone" } }],
+    gallery: [
+      { src: onstageShow, frame: "desktop", url: "jubileex.co.th/event/ghibli-live-at-the-palace", caption: { th: "แต่ละงานมีหน้าของตัวเอง ขึ้นด้วยโลโก้งานบนรูปจากคืนแสดง", en: "Each show has its own page, opening with its logo over a photo from the night" } },
+      { src: onstagePhone, frame: "phone", caption: { th: "งานที่กำลังจะมาบนมือถือ มีวันแสดง สถานที่ และปุ่มซื้อบัตร", en: "An upcoming show on a phone, with its dates, venue and a ticket button" } },
+    ],
   },
   {
     slug: "eleave",
